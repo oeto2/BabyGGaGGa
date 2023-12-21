@@ -3,7 +3,14 @@ guid: 4e95c02f0f7edef4fa97010e128a4ccb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - timeText: {instanceID: 0}
+  - endText: {instanceID: 0}
+  - card: {fileID: 3998122790148070751, guid: 6aec2bfe72e58e54db4340bfa58a33a4, type: 3}
+  - firstCard: {instanceID: 0}
+  - secondCard: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - match: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

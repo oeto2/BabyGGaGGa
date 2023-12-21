@@ -40,15 +40,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9};
         rtans = rtans.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
 
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 20; i++)
         {
             GameObject newCard = Instantiate(card);
             newCard.transform.parent = GameObject.Find("Cards").transform;
-            float x = (i / 4) * 1.4f - 2.1f;
-            float y = (i % 4) * 1.4f - 3.0f;
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.7f;
 
             newCard.transform.position = new Vector3(x, y, 0);
 
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         timeText.text = time.ToString("N2");
 
         //게임 오버
-        if(time >= 3f)
+        if(time >= 30f)
         {
             GameEnd();
         }
