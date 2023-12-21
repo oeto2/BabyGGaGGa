@@ -18,6 +18,7 @@ public class diffBtn : MonoBehaviour
 
     public void diffChange()
     {
+        // 난이도 조절
         if (transform.Find("Normal").gameObject.activeSelf)
         {
             transform.Find("Normal").gameObject.SetActive(false);
