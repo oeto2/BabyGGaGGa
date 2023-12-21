@@ -53,8 +53,12 @@ public class SounManager : MonoBehaviour
     {
         //클립 변경
         audioSource.clip = audio_Match;
-        //매치 효과음 재생
-        audioSource.PlayOneShot(audio_Match);
+        
+        if(audioSource != null)
+        {
+            //매치 효과음 재생
+            audioSource.PlayOneShot(audio_Match);
+        }
     }
 
     //카드 뒤집는 효과음 재생 
@@ -62,7 +66,11 @@ public class SounManager : MonoBehaviour
     {
         //클립 변경
         audioSource.clip = auido_Flip;
-        //플립 효과음 재생
-        audioSource.PlayOneShot(auido_Flip);
+
+        if(audioSource != null)
+        {
+            //플립 효과음 재생
+            audioSource.PlayOneShot(auido_Flip);
+        }
     }
 }
