@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SounManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
     //싱글톤 패턴
-    public static SounManager instance = null;
+    public static SoundManager instance = null;
 
     //오디오 소스
     public AudioSource audioSource;
@@ -14,7 +14,18 @@ public class SounManager : MonoBehaviour
     public AudioClip audio_Match;
 
     //플립 효과음
-    public AudioClip auido_Flip;
+    public AudioClip audio_Flip;
+
+    //티모 웃음소리
+    public AudioClip audio_Teemo;
+
+    //롤 패배 소리
+    public AudioClip audio_Defeat;
+
+    private void Start()
+    {
+        Debug.Log(3 % 4);
+    }
 
     public void Awake()
     {
@@ -49,28 +60,15 @@ public class SounManager : MonoBehaviour
     }
 
     //매치 효과음 재생
-    public void PlayMatchSound()
+    public void PlayEffectSound(AudioClip _clip)
     {
         //클립 변경
-        audioSource.clip = audio_Match;
+        audioSource.clip = _clip;
         
         if(audioSource != null)
         {
-            //매치 효과음 재생
-            audioSource.PlayOneShot(audio_Match);
-        }
-    }
-
-    //카드 뒤집는 효과음 재생 
-    public void PlayFlipSound()
-    {
-        //클립 변경
-        audioSource.clip = auido_Flip;
-
-        if(audioSource != null)
-        {
-            //플립 효과음 재생
-            audioSource.PlayOneShot(auido_Flip);
+            //효과음 재생
+            audioSource.PlayOneShot(_clip);
         }
     }
 }

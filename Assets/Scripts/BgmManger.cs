@@ -46,13 +46,16 @@ public class BgmManger : MonoBehaviour
         }
     }
 
-    //배경음악 속도 변경 (빠르게 -> 1.3 권장)
+    //배경음악 속도 변경 (-3 ~ 3)
     public void ChangeBGMSpeed(float _speed)
     {
         if(audioSource != null)
         {
-            //설정값으로 속도 변경
-            audioSource.pitch = _speed;
+            if(_speed <= 3 && _speed>= -3)
+            {
+                //설정값으로 속도 변경
+                audioSource.pitch = _speed;
+            }
         }
     }
 }
