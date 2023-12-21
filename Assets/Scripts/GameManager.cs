@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         timeText.text = time.ToString("N2");
 
         //게임 오버
-        if(time >= 60f)
+        if(time >= 3f)
         {
             GameEnd();
         }
