@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
         timeText.text = time.ToString("N0");
         scoreText.text = score.ToString();
         int cardsLeft = GameObject.Find("Cards").transform.childCount;
-        Debug.Log(GameObject.Find("Cards").transform.childCount);
         if (cardsLeft == 0)
         {
             GameEnd();
@@ -146,6 +145,7 @@ public class GameManager : MonoBehaviour
         else
         {
             score -= 1;
+            combo = 0;
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
             firstCard.transform.Find("back").GetComponent<SpriteRenderer>().color = Color.grey;
