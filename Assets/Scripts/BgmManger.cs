@@ -11,6 +11,12 @@ public class BgmManger : MonoBehaviour
     //배경음악
     public AudioClip[] audio_BGM;
 
+    //게임 오버음악
+    public AudioClip[] audio_GameOver;
+
+    //게임 클리어 음악
+    public AudioClip[] audio_GameClear;
+
     private void Awake()
     {
         if(instance == null)
@@ -59,6 +65,22 @@ public class BgmManger : MonoBehaviour
                 //설정값으로 속도 변경
                 audioSource.pitch = _speed;
             }
+        }
+    }
+
+    //배경음 재생
+    public void PlayBGMSound(AudioClip _clip)
+    {
+        if (_clip != null)
+        {
+            //클립 변경
+            audioSource.clip = _clip;
+        }
+
+        if (audioSource != null)
+        {
+            //효과음 재생
+            audioSource.PlayOneShot(_clip);
         }
     }
 }

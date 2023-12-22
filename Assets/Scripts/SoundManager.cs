@@ -22,11 +22,9 @@ public class SoundManager : MonoBehaviour
     //롤 패배 소리
     public AudioClip audio_Defeat;
 
-    //게임 오버음악
-    public AudioClip[] audio_GameOver;
-
-    //게임 클리어 음악
-    public AudioClip[] audio_GameClear;
+    //클릭 소리
+    public AudioClip[] audio_Click;
+  
 
     private void Start()
     {
@@ -65,7 +63,7 @@ public class SoundManager : MonoBehaviour
        // }
     }
 
-    //매치 효과음 재생
+    //효과음 재생
     public void PlayEffectSound(AudioClip _clip)
     {
         if(_clip != null)
