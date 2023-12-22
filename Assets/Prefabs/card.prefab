@@ -240,8 +240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 934206359380857567}
-  flip: {fileID: 8300000, guid: 5831a39ff165c6c4b882ac1af094119c, type: 3}
-  audioSource: {fileID: 5990270497946190238}
 --- !u!114 &7494836359192349675
 MonoBehaviour:
   m_ObjectHideFlags: 0

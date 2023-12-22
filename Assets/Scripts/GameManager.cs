@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            tryChance = true;
+            
             //π⁄¡ˆ»∆A¥‘ ƒ⁄µÂ
             time -= Time.deltaTime;
             timeText.text = time.ToString("N0");
@@ -93,9 +93,10 @@ public class GameManager : MonoBehaviour
             if (time <= 10.0f)
             {
                 BgmManger.instance.ChangeBGMSpeed(1.3f);
-                timeText.color = new Color(255, 0, 0, 255);
                 txtAnim.SetBool("light", true);
             }
+
+            
 
             //∞‘¿” ø¿πˆ
             if (time <= 0.0f)
@@ -109,23 +110,25 @@ public class GameManager : MonoBehaviour
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        Vector2 firstCardPos = new Vector2(firstCard.transform.position.x, firstCard.transform.position.y);
+        Vector2 secondCardPos = new Vector2(secondCard.transform.position.x, secondCard.transform.position.y);
 
-        tryChance = false;
-
-        if (firstCardImage == secondCardImage)
+        if (firstCardImage == secondCardImage && firstCardPos != secondCardPos)
         {
-            
-
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
 
+            
+
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
+
+            Invoke("stopDoubleClick", 1f);
             //¿±¿Á«ˆ¥‘ ƒ⁄µÂ
             switch (firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name)
             {
-                case "card0": ShowNameText("√÷√∂πŒ ∆¿¿Â"); break;
-                case "card1": ShowNameText("√÷√∂πŒ ∆¿¿Â"); break;
+                case "card0": ShowNameText("√÷√∂»Ø ∆¿¿Â"); break;
+                case "card1": ShowNameText("√÷√∂»Ø ∆¿¿Â"); break;
                 case "card2": ShowNameText("π⁄¡ˆ»∆A"); break;
                 case "card3": ShowNameText("π⁄¡ˆ»∆A"); break;
                 case "card4": ShowNameText("¿±¿Á«ˆ"); break;
@@ -143,6 +146,7 @@ public class GameManager : MonoBehaviour
                 endText.SetActive(true);
                 //Invoke("GameEnd", 1f);
             }
+            
         }
         else
         {
@@ -150,10 +154,17 @@ public class GameManager : MonoBehaviour
             ShowNameText("Ω«∆–");
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
+            Invoke("stopDoubleClick", 1f);
         }
         matchCount++;
         firstCard = null;
         secondCard = null;
+    }
+
+
+    void stopDoubleClick()
+    {
+        tryChance = true;
     }
 
     void ShowNameText(string name)
@@ -219,6 +230,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(waitSeconds);
         }
         isCardGenerated = true;
+        tryChance = true;
     }
 
 }

@@ -22,23 +22,36 @@ public class card : MonoBehaviour
     {
         if (GameManager.instance.tryChance)
         {
+            GameManager.instance.tryChance = false;
             anim.SetBool("isOpen", true);
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Flip);
-            Invoke("Filp", 0.2f);
+            Invoke("Filp", 0.5f);
 
             //ù��° ī�尡 ����ٸ�
             if (GameManager.instance.firstCard == null)
             {
                 GameManager.instance.firstCard = this.gameObject;
+                Invoke("stopDoubleClick", 0.5f);
                 Invoke("rollBack", 3f);
             }
-            else
+            else if (this != GameManager.instance.firstCard)
             {
                 GameManager.instance.secondCard = gameObject;
                 GameManager.instance.IsMatched();
             }
+
+            if(this == GameManager.instance.firstCard)
+            {
+                Debug.Log("같은카드");
+            }
         }
     }
+
+    public void stopDoubleClick()
+    {
+        GameManager.instance.tryChance = true;
+    }
+
     void Filp()
     {
         transform.Find("front").gameObject.SetActive(true);
@@ -50,6 +63,7 @@ public class card : MonoBehaviour
         CloseCardInvoke();
         GameManager.instance.firstCard = null;
         GameManager.instance.matchCount++;
+        
     }
 
     public void DestroyCard()
@@ -60,7 +74,6 @@ public class card : MonoBehaviour
     void DestroyCardInvoke()
     {
         Destroy(gameObject);
-        GameManager.instance.tryChance = true;
     }
 
     public void CloseCard()
@@ -74,6 +87,5 @@ public class card : MonoBehaviour
         transform.Find("back").gameObject.SetActive(true);
         transform.Find("front").gameObject.SetActive(false);
         transform.Find("back").GetComponent<SpriteRenderer>().color = new Color(100.0f / 255.0f, 100.0f / 255.0f, 100.0f / 255.0f, 255.0f / 255.0f);
-        GameManager.instance.tryChance = true;
     }
 }
