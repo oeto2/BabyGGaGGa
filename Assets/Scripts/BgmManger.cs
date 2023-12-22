@@ -8,8 +8,8 @@ public class BgmManger : MonoBehaviour
 
     public AudioSource audioSource;
 
-    //배경음악1
-    public AudioClip audio_BGM1;
+    //배경음악
+    public AudioClip[] audio_BGM;
 
     private void Awake()
     {
@@ -28,18 +28,21 @@ public class BgmManger : MonoBehaviour
 
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.Z))
+        //if (Input.GetKeyDown(KeyCode.Z))
         //{
-        //    ChangeFastBGM();
+        //    SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_GameOver[2]);
         //}
     }
 
     private void Start()
     {
         //기본 배경음악으로 설정
-        audioSource.clip = audio_BGM1;
-        
-        if(audioSource != null)
+        if(audio_BGM[0] != null)
+        {
+            audioSource.clip = audio_BGM[0];
+        }
+
+        if (audioSource != null)
         {
             //배경음악 실행
             audioSource.Play();
