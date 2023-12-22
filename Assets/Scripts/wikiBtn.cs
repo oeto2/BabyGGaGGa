@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class wikiBtn : MonoBehaviour
 {
+    bool[] unlocks = {true, true, true, true, true, false, false, false, false, false };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,20 @@ public class wikiBtn : MonoBehaviour
     public void OpenwikiPage()
     {
         transform.parent.Find("wikiCanvas").gameObject.SetActive(true);
+        Invoke("unlockBook", 1f);
+    }
+
+    void unlockBook()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (unlocks[i])
+            {
+                string book = "book" + i.ToString();
+                transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image").gameObject.SetActive(true);
+                transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("unlocked").gameObject.SetActive(false);
+            }
+        }
     }
 
     public void ShowwikiImage()
@@ -53,16 +69,16 @@ public class wikiBtn : MonoBehaviour
 
     void wikiTextShow(int memNum)
     {
-        transform.parent.Find("Descipt").gameObject.SetActive(true);
-        Text[] allText = transform.parent.Find("Descipt").Find("Canvas").GetComponentsInChildren<Text>();
+        transform.parent.parent.Find("Descipt").gameObject.SetActive(true);
+        Text[] allText = transform.parent.parent.Find("Descipt").Find("Canvas").GetComponentsInChildren<Text>();
         foreach(Text t in allText) 
         {
             t.gameObject.SetActive(false);
         }
         string txt = "Text" + memNum.ToString();
         string img = this.gameObject.GetComponent<Image>().sprite.name;
-        transform.parent.Find("Descipt").Find("Canvas").Find(txt).gameObject.SetActive(true);
-        transform.parent.Find("Descipt").Find("wikiImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(img);
+        transform.parent.parent.Find("Descipt").Find("Canvas").Find(txt).gameObject.SetActive(true);
+        transform.parent.parent.Find("Descipt").Find("wikiImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(img);
     }
 
     public void ExitwikiDesciption()
