@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public int combo;
     public bool isEnd;
     public Text[] scoreData;
-
+    private int[] bestScore = new int[3];
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();	// Generated 할 카드 오브젝트와 분배할 위치를 Dictionary에 저장
@@ -176,29 +176,32 @@ public class GameManager : MonoBehaviour
     }
     public void SaveScore()
     {
-        if (score < PlayerPrefs.GetInt("BestScore"))
+        PlayerPrefs.SetInt("CurrentScore", score);
+        int tmpScore = 0;
+        for(int i = 0; i < 3;i++)
         {
-            if (score < PlayerPrefs.GetInt("SecondScore"))
+            bestScore[i] = PlayerPrefs.GetInt(i + "BestScore");
+            while (bestScore[i]<score)
             {
-                if (score < PlayerPrefs.GetInt("ThirdScore"))
-                    return;
-                PlayerPrefs.SetInt("ThirdScore", score);
-                return;
+                tmpScore = bestScore[i];
+                bestScore[i] = score;
+
+                PlayerPrefs.SetInt(i + "BestScore", score);
+
+                score = tmpScore;
             }
-            PlayerPrefs.SetInt("ThirdScore", PlayerPrefs.GetInt("SecondScore"));
-            PlayerPrefs.SetInt("SecondScore", score);
-            return;
         }
-        if (score == PlayerPrefs.GetInt("BestScore")) return;
-        PlayerPrefs.SetInt("ThirdScore", PlayerPrefs.GetInt("SecondScore"));
-        PlayerPrefs.SetInt("SecondScore", PlayerPrefs.GetInt("BestScore"));
-        PlayerPrefs.SetInt("BestScore", score);
+        for(int i = 0;i< 3;i++) 
+        {
+            PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
+        }
     }
     public void LoadScore()
     {
-        scoreData[0].text = PlayerPrefs.GetInt("BestScore").ToString() + "점";
-        scoreData[1].text = PlayerPrefs.GetInt("SecondScore").ToString() + "점";
-        scoreData[2].text = PlayerPrefs.GetInt("ThirdScore").ToString() + "점";
+        for (int i = 0; i < 3; i++)
+        {
+            scoreData[i].text = PlayerPrefs.GetInt(i + "BestScore").ToString();
+        }
     }
 
 }
