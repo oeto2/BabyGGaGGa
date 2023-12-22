@@ -60,7 +60,9 @@ public class wikiBtn : MonoBehaviour
             t.gameObject.SetActive(false);
         }
         string txt = "Text" + memNum.ToString();
+        string img = this.gameObject.GetComponent<Image>().sprite.name;
         transform.parent.Find("Descipt").Find("Canvas").Find(txt).gameObject.SetActive(true);
+        transform.parent.Find("Descipt").Find("wikiImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(img);
     }
 
     public void ExitwikiDesciption()
