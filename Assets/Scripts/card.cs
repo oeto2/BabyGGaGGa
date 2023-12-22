@@ -18,31 +18,31 @@ public class card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OpenCard()
     {
-        audioSource.PlayOneShot(flip);
-        anim.SetBool("isOpen", true);
-        transform.Find("front").gameObject.SetActive(true);
-        transform.Find("back").gameObject.SetActive(false);
+            audioSource.PlayOneShot(flip);
+            anim.SetBool("isOpen", true);
+            transform.Find("front").gameObject.SetActive(true);
+            transform.Find("back").gameObject.SetActive(false);
 
-        //첫번째 카드가 비었다면
-        if(GameManager.instance.firstCard == null)
-        {
-            GameManager.instance.firstCard = this.gameObject;
-        }
-        else
-        {
-            GameManager.instance.secondCard = gameObject;
-            GameManager.instance.IsMatched();
-        }
+            //첫번째 카드가 비었다면
+            if (GameManager.instance.firstCard == null)
+            {
+                GameManager.instance.firstCard = this.gameObject;
+            }
+            else
+            {
+                GameManager.instance.secondCard = gameObject;
+                GameManager.instance.IsMatched();
+            }
     }
 
     public void DestroyCard()
     {
-        Invoke("DestroyCardInvoke", 1.0f);
+        Invoke("DestroyCardInvoke", 0.5f);
     }
     
     void DestroyCardInvoke()
@@ -52,7 +52,7 @@ public class card : MonoBehaviour
 
     public void CloseCard()
     {
-        Invoke("CloseCardInvoke", 1.0f);
+        Invoke("CloseCardInvoke", 0.5f);
     }
     
     void CloseCardInvoke()
