@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip match;
     int cardsLeft;
+    public int score;
+    public Text scoreText;
 
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
 
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         time -= Time.deltaTime;
         timeText.text = time.ToString("N2");
+        scoreText.text = score.ToString();
         if (isCardGenerated == false)
         {
             StartCoroutine(GenerateCardMoveToTarget(0.03f));
@@ -112,6 +115,7 @@ public class GameManager : MonoBehaviour
         if(firstCardImage == secondCardImage)
         {
             audioSource.PlayOneShot(match);
+            score += 10;
 
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
@@ -123,11 +127,12 @@ public class GameManager : MonoBehaviour
                 //종료시키자!!
                 Time.timeScale = 0f;
                 endText.SetActive(true);
-                //Invoke("GameEnd", 1f);
+                score += (int)time;
             }
         }
         else
         {
+            score -= 1;
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
             firstCard.transform.Find("back").GetComponent<SpriteRenderer>().color = Color.grey;
