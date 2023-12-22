@@ -17,6 +17,9 @@ public class BgmManger : MonoBehaviour
     //게임 클리어 음악
     public AudioClip[] audio_GameClear;
 
+    //인포매니저 스크립트
+    public InfoManager infoManagerScr;
+
     private void Awake()
     {
         if(instance == null)
@@ -32,14 +35,6 @@ public class BgmManger : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_GameOver[2]);
-        //}
-    }
-
     private void Start()
     {
         //기본 배경음악으로 설정
@@ -52,6 +47,19 @@ public class BgmManger : MonoBehaviour
         {
             //배경음악 실행
             audioSource.Play();
+        }
+
+        
+        //인포 매니저 스크립트 할당
+        GameObject infoObj = GameObject.Find("InfoManager");
+        if(infoObj != null)
+        {
+            if (infoObj.GetComponent<InfoManager>() != null)
+            {
+                infoManagerScr = GameObject.Find("InfoManager").GetComponent<InfoManager>();
+                //볼륨 조절
+                audioSource.volume = infoManagerScr.bgmValume;
+            }
         }
     }
 

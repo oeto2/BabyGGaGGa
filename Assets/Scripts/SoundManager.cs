@@ -18,11 +18,23 @@ public class SoundManager : MonoBehaviour
 
     //클릭 소리
     public AudioClip[] audio_Click;
-  
+
+    //인포매니저 스크립트
+    public InfoManager infoManagerScr;
 
     private void Start()
     {
-        Debug.Log(3 % 4);
+        //인포 매니저 스크립트 할당
+        GameObject infoObj = GameObject.Find("InfoManager");
+        if (infoObj != null)
+        {
+            if (infoObj.GetComponent<InfoManager>() != null)
+            {
+                infoManagerScr = GameObject.Find("InfoManager").GetComponent<InfoManager>();
+                //볼륨 조절
+                audioSource.volume = infoManagerScr.effectValume;
+            }
+        }
     }
 
     public void Awake()

@@ -24,10 +24,10 @@ public class InfoManager : MonoBehaviour
     public static InfoManager instance = null;
 
     //배경음 크기
-    public float bgmValume = 1f;
+    [Range(0.1f, 1f)] public float bgmValume = 1f;
 
     //효과음 크기
-    public float effectValume = 1f;
+    [Range(0.1f, 1f)] public float effectValume = 1f;
 
     //난이도
     public int int_level = 0;
@@ -53,9 +53,6 @@ public class InfoManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            unlockInfo.cch1 = true;
-        }
+    
     }
 }

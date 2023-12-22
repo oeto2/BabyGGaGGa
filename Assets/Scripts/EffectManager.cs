@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EffectManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EffectManager : MonoBehaviour
 
     //롤 패배 소리
     public AudioClip audio_Defeat;
+
+    //인포매니저 스크립트
+    public InfoManager infoManagerScr;
 
     private void Awake()
     {
@@ -27,6 +31,29 @@ public class EffectManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void Start()
+    {
+        //인포 매니저 스크립트 할당
+        GameObject infoObj = GameObject.Find("InfoManager");
+        if (infoObj != null)
+        {
+            if (infoObj.GetComponent<InfoManager>() != null)
+            {
+                infoManagerScr = GameObject.Find("InfoManager").GetComponent<InfoManager>();
+                //볼륨 조절
+                audioSource.volume = infoManagerScr.effectValume;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    SceneManager.LoadScene("StartScene");
+        //}
     }
 
     //효과음 재생
