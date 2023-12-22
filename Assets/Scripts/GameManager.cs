@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Teemo);
+            EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Teemo);
             ShowNameText("실패");
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
-        SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Defeat);
+        EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
         //종료시키자!!
         Time.timeScale = 0f;
         endText.SetActive(true);
