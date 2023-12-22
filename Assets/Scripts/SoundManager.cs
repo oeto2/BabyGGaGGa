@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(3 % 4);
+        
     }
 
     public void Awake()

@@ -640,7 +640,7 @@ MonoBehaviour:
   card: {fileID: 3998122790148070751, guid: 6aec2bfe72e58e54db4340bfa58a33a4, type: 3}
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1363269501}
   match: {fileID: 8300000, guid: 070693f3bb7bb1447a239cea1c161dd6, type: 3}
 --- !u!4 &1145625570
 Transform:
