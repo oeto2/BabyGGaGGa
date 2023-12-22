@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,53 +12,72 @@ public class card : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OpenCard()
     {
-        audioSource.PlayOneShot(flip);
-        anim.SetBool("isOpen", true);
+        if (GameManager.instance.tryChance)
+        {
+            audioSource.PlayOneShot(flip);
+            anim.SetBool("isOpen", true);
+
+            Invoke("Filp", 0.2f);
+
+            //Ã¹ï¿½ï¿½Â° Ä«ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½
+            if (GameManager.instance.firstCard == null)
+            {
+                GameManager.instance.firstCard = this.gameObject;
+                Invoke("rollBack", 3f);
+            }
+            else
+            {
+                GameManager.instance.secondCard = gameObject;
+                GameManager.instance.IsMatched();
+            }
+        }
+    }
+    void Filp()
+    {
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);
+    }
 
-        //Ã¹¹øÂ° Ä«µå°¡ ºñ¾ú´Ù¸é
-        if(GameManager.instance.firstCard == null)
-        {
-            GameManager.instance.firstCard = this.gameObject;
-        }
-        else
-        {
-            GameManager.instance.secondCard = gameObject;
-            GameManager.instance.IsMatched();
-        }
+    void rollBack()
+    {
+        CloseCardInvoke();
+        GameManager.instance.firstCard = null;
+        GameManager.instance.matchCount++;
     }
 
     public void DestroyCard()
     {
         Invoke("DestroyCardInvoke", 1.0f);
     }
-    
+
     void DestroyCardInvoke()
     {
         Destroy(gameObject);
+        GameManager.instance.tryChance = true;
     }
 
     public void CloseCard()
     {
         Invoke("CloseCardInvoke", 1.0f);
     }
-    
+
     void CloseCardInvoke()
     {
         anim.SetBool("isOpen", false);
         transform.Find("back").gameObject.SetActive(true);
         transform.Find("front").gameObject.SetActive(false);
+        transform.Find("back").GetComponent<SpriteRenderer>().color = new Color(100.0f / 255.0f, 100.0f / 255.0f, 100.0f / 255.0f, 255.0f / 255.0f);
+        GameManager.instance.tryChance = true;
     }
 }
