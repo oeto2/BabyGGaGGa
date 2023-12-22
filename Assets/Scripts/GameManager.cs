@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public int combo;
     public bool isEnd;
+    public Text[] scoreData;
 
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
 
@@ -164,6 +165,8 @@ public class GameManager : MonoBehaviour
             endText.SetActive(true);
             score += (int)time;
             isEnd = false;
+            SaveScore();
+            LoadScore();
         }
     }
 
@@ -171,4 +174,31 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void SaveScore()
+    {
+        if (score < PlayerPrefs.GetInt("BestScore"))
+        {
+            if (score < PlayerPrefs.GetInt("SecondScore"))
+            {
+                if (score < PlayerPrefs.GetInt("ThirdScore"))
+                    return;
+                PlayerPrefs.SetInt("ThirdScore", score);
+                return;
+            }
+            PlayerPrefs.SetInt("ThirdScore", PlayerPrefs.GetInt("SecondScore"));
+            PlayerPrefs.SetInt("SecondScore", score);
+            return;
+        }
+        if (score == PlayerPrefs.GetInt("BestScore")) return;
+        PlayerPrefs.SetInt("ThirdScore", PlayerPrefs.GetInt("SecondScore"));
+        PlayerPrefs.SetInt("SecondScore", PlayerPrefs.GetInt("BestScore"));
+        PlayerPrefs.SetInt("BestScore", score);
+    }
+    public void LoadScore()
+    {
+        scoreData[0].text = PlayerPrefs.GetInt("BestScore").ToString() + "점";
+        scoreData[1].text = PlayerPrefs.GetInt("SecondScore").ToString() + "점";
+        scoreData[2].text = PlayerPrefs.GetInt("ThirdScore").ToString() + "점";
+    }
+
 }
