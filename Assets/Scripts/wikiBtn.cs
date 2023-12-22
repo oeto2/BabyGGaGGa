@@ -24,11 +24,43 @@ public class wikiBtn : MonoBehaviour
 
     public void ShowwikiImage()
     {
-        if (this.gameObject.GetComponent<Image>().sprite.name == "card0")
+        if (this.gameObject.GetComponent<Image>().sprite.name == "card0" 
+            || this.gameObject.GetComponent<Image>().sprite.name == "card1")
         {
-            transform.parent.Find("Descipt").gameObject.SetActive(true);
-
+            wikiTextShow(0);
         }
+        else if (this.gameObject.GetComponent<Image>().sprite.name == "card2"
+            || this.gameObject.GetComponent<Image>().sprite.name == "card3")
+        {
+            wikiTextShow(1);
+        }
+        else if (this.gameObject.GetComponent<Image>().sprite.name == "card4"
+            || this.gameObject.GetComponent<Image>().sprite.name == "card5")
+        {
+            wikiTextShow(2);
+        }
+        else if (this.gameObject.GetComponent<Image>().sprite.name == "card6"
+            || this.gameObject.GetComponent<Image>().sprite.name == "card7")
+        {
+            wikiTextShow(3);
+        }
+        else if (this.gameObject.GetComponent<Image>().sprite.name == "card8"
+            || this.gameObject.GetComponent<Image>().sprite.name == "card9")
+        {
+            wikiTextShow(4);
+        }
+    }
+
+    void wikiTextShow(int memNum)
+    {
+        transform.parent.Find("Descipt").gameObject.SetActive(true);
+        Text[] allText = transform.parent.Find("Descipt").Find("Canvas").GetComponentsInChildren<Text>();
+        foreach(Text t in allText) 
+        {
+            t.gameObject.SetActive(false);
+        }
+        string txt = "Text" + memNum.ToString();
+        transform.parent.Find("Descipt").Find("Canvas").Find(txt).gameObject.SetActive(true);
     }
 
     public void ExitwikiDesciption()
