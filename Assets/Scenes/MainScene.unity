@@ -173,6 +173,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 58f3b7e2d29393648a8c4da43d3b3dd5, type: 3}
   - {fileID: 8300000, guid: c6489dca72eb0f94aa94f6bedf7feedc, type: 3}
   - {fileID: 8300000, guid: e4ac10fb8d10ea542b60214fdf56494d, type: 3}
+  audio_GameOver:
+  - {fileID: 8300000, guid: 85793d4e8f6b42044ba27c1d8eff8534, type: 3}
+  - {fileID: 8300000, guid: 8d4aa930a2ed5b042b51e45133280dd9, type: 3}
+  - {fileID: 8300000, guid: fffc03a279a274b4495cb2503b6f1a5c, type: 3}
+  - {fileID: 8300000, guid: 3b02b26c8122f0c42bea4624b3664893, type: 3}
+  - {fileID: 8300000, guid: 58a45328e8dd96348b8440b945123f5d, type: 3}
+  audio_GameClear:
+  - {fileID: 8300000, guid: 3a32494b38a2f06448d0136780a335a2, type: 3}
+  - {fileID: 8300000, guid: d4433078e095528478ab946bb4c8c2ff, type: 3}
+  - {fileID: 8300000, guid: cfb1e1d33e1ea6d4c97c48d43ab9c982, type: 3}
 --- !u!82 &255879519
 AudioSource:
   m_ObjectHideFlags: 0
@@ -710,13 +720,7 @@ MonoBehaviour:
   audio_Flip: {fileID: 8300000, guid: 5831a39ff165c6c4b882ac1af094119c, type: 3}
   audio_Teemo: {fileID: 8300000, guid: 926439eead803ea46b34718943e0d538, type: 3}
   audio_Defeat: {fileID: 8300000, guid: d1222905c23d13f43ae428c0a58e4d81, type: 3}
-  audio_GameOver:
-  - {fileID: 8300000, guid: 85793d4e8f6b42044ba27c1d8eff8534, type: 3}
-  - {fileID: 8300000, guid: 8d4aa930a2ed5b042b51e45133280dd9, type: 3}
-  - {fileID: 8300000, guid: fffc03a279a274b4495cb2503b6f1a5c, type: 3}
-  - {fileID: 8300000, guid: 3b02b26c8122f0c42bea4624b3664893, type: 3}
-  - {fileID: 8300000, guid: 58a45328e8dd96348b8440b945123f5d, type: 3}
-  audio_GameClear:
+  audio_Click:
   - {fileID: 8300000, guid: 3a32494b38a2f06448d0136780a335a2, type: 3}
   - {fileID: 8300000, guid: d4433078e095528478ab946bb4c8c2ff, type: 3}
   - {fileID: 8300000, guid: cfb1e1d33e1ea6d4c97c48d43ab9c982, type: 3}
