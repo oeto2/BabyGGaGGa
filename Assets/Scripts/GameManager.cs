@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+using JetBrains.Annotations;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Text[] scoreData;
     private int[] bestScore;
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
+    public bool cardOpen;
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();	// Generated 할 카드 오브젝트와 분배할 위치를 Dictionary에 저장
 
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cardOpen =true ;
         isEnd = true;
         Time.timeScale = 1.0f;
         isCardGenerated = false;
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
 
     public void IsMatched()
     {
+        cardOpen = false;
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
 
