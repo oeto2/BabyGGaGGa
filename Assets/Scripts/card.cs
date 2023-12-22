@@ -38,6 +38,7 @@ public class card : MonoBehaviour
             {
                 GameManager.instance.secondCard = gameObject;
                 GameManager.instance.IsMatched();
+                CancelInvoke("rollBack");
             }
 
             if(this == GameManager.instance.firstCard)

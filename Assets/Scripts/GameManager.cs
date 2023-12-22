@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
             Invoke("stopDoubleClick", 1f);
+            time -= 1f;
         }
         matchCount++;
         firstCard = null;
