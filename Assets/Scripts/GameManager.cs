@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     int cardsLeft;
     public int score;
     public Text scoreText;
+    public int combo;
+    public bool isEnd;
 
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isEnd = true;
         Time.timeScale = 1.0f;
         isCardGenerated = false;
 
@@ -89,8 +92,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-        timeText.text = time.ToString("N2");
+        timeText.text = time.ToString("N0");
         scoreText.text = score.ToString();
+        int cardsLeft = GameObject.Find("Cards").transform.childCount;
+        Debug.Log(GameObject.Find("Cards").transform.childCount);
+        if (cardsLeft == 0)
+        {
+            GameEnd();
+        }
         if (isCardGenerated == false)
         {
             StartCoroutine(GenerateCardMoveToTarget(0.03f));
@@ -114,21 +123,24 @@ public class GameManager : MonoBehaviour
 
         if(firstCardImage == secondCardImage)
         {
+            combo += 1;
             audioSource.PlayOneShot(match);
-            score += 10;
 
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
-
-            int cardsLeft = GameObject.Find("Cards").transform.childCount;
-            Debug.Log(GameObject.Find("Cards").transform.childCount);
-            if (cardsLeft == 2)
+            if(combo == 1)
             {
-                //종료시키자!!
-                Time.timeScale = 0f;
-                endText.SetActive(true);
-                score += (int)time;
+                score += 10;
             }
+            else if(combo == 2)
+            {
+                score += 20;
+            }
+            else
+            {
+                score += 30;
+            }
+
         }
         else
         {
@@ -145,9 +157,14 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
-        //종료시키자!!
-        Time.timeScale = 0f;
-        endText.SetActive(true);
+        if(isEnd)
+        {
+            //종료시키자!!
+            Time.timeScale = 0f;
+            endText.SetActive(true);
+            score += (int)time;
+            isEnd = false;
+        }
     }
 
     public void RetryGame()

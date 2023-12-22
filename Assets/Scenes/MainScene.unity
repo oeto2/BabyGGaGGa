@@ -644,6 +644,8 @@ MonoBehaviour:
   match: {fileID: 8300000, guid: 070693f3bb7bb1447a239cea1c161dd6, type: 3}
   score: 0
   scoreText: {fileID: 1973693330}
+  combo: 0
+  isEnd: 0
 --- !u!4 &1145625570
 Transform:
   m_ObjectHideFlags: 0
@@ -1058,7 +1060,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.00
+  m_Text: 0
 --- !u!222 &2141771225
 CanvasRenderer:
   m_ObjectHideFlags: 0
