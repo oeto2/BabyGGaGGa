@@ -170,7 +170,7 @@ MonoBehaviour:
   bgmValume: 1
   effectValume: 1
   int_level: 0
-  unlockInfo: 000000000000000000
+  unlockInfo: 00000000000000000000
 --- !u!1 &79174176
 GameObject:
   m_ObjectHideFlags: 0
