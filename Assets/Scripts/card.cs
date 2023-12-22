@@ -5,9 +5,6 @@ using UnityEngine;
 public class card : MonoBehaviour
 {
     public Animator anim;
-    public AudioClip flip;
-    public AudioSource audioSource;
-
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +22,8 @@ public class card : MonoBehaviour
     {
         if (GameManager.instance.tryChance)
         {
-            audioSource.PlayOneShot(flip);
             anim.SetBool("isOpen", true);
-
+            SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Flip);
             Invoke("Filp", 0.2f);
 
             //ù��° ī�尡 ����ٸ�

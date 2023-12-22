@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
     public GameObject firstCard;
     public GameObject secondCard;
 
-    public AudioSource audioSource;
-    public AudioClip match;
 
     public int matchCount;
 
@@ -92,6 +90,7 @@ public class GameManager : MonoBehaviour
 
             if (time <= 10.0f)
             {
+                BgmManger.instance.ChangeBGMSpeed(1.3f);
                 timeText.color = new Color(255, 0, 0, 255);
             }
 
@@ -112,13 +111,13 @@ public class GameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
-            //audioSource.PlayOneShot(match);
+            
 
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
 
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
-
+            SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
             //윤재현님 코드
             switch (firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name)
             {
@@ -136,6 +135,7 @@ public class GameManager : MonoBehaviour
             if (cardsLeft == 2)
             {
                 //종료시키자!!
+                BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
                 Time.timeScale = 0f;
                 endText.SetActive(true);
                 //Invoke("GameEnd", 1f);
@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Teemo);
             ShowNameText("실패");
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
@@ -166,6 +167,7 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
+        SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Defeat);
         //종료시키자!!
         Time.timeScale = 0f;
         endText.SetActive(true);
