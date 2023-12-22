@@ -27,21 +27,38 @@ public class card : MonoBehaviour
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Flip);
             Invoke("Filp", 0.5f);
 
-            //ù��° ī�尡 ����ٸ�
             if (GameManager.instance.firstCard == null)
             {
+                Debug.Log("첫 번째 카드값 할당");
                 GameManager.instance.firstCard = this.gameObject;
                 Invoke("stopDoubleClick", 0.5f);
                 Invoke("rollBack", 3f);
             }
-            else if (this != GameManager.instance.firstCard)
+
+            //Debug.Log($"firstcard : {GameManager.instance.firstCard}");
+            //Debug.Log("현재 위치값: " + this.transform.position);
+            //Debug.Log("첫번째 카드 포지션 값: " + GameManager.instance.firstCard.transform.position);
+            else
             {
+                Debug.Log("두 번째 카드값 할당");
                 GameManager.instance.secondCard = gameObject;
                 GameManager.instance.IsMatched();
                 CancelInvoke("rollBack");
             }
 
-            if(this == GameManager.instance.firstCard)
+            ////게임오브젝트 포지션값 != 게임매니저의 first카드 포지션 값
+            //if (new Vector2(this.transform.position.x, this.transform.position.y)
+            //    != new Vector2(GameManager.instance.firstCard.transform.position.x,
+            //    GameManager.instance.firstCard.transform.position.y) && GameManager.instance.firstCard != null)
+            //{
+            //    Debug.Log("두 번째 카드값 할당");
+            //    GameManager.instance.secondCard = gameObject;
+            //    GameManager.instance.IsMatched();
+            //    CancelInvoke("rollBack");
+            //}
+
+
+            if (this == GameManager.instance.firstCard)
             {
                 Debug.Log("같은카드");
             }
@@ -64,7 +81,7 @@ public class card : MonoBehaviour
         CloseCardInvoke();
         GameManager.instance.firstCard = null;
         GameManager.instance.matchCount++;
-        
+
     }
 
     public void DestroyCard()

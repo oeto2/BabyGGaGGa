@@ -156,16 +156,17 @@ public class GameManager : MonoBehaviour
             secondCard.GetComponent<card>().CloseCard();
             Invoke("stopDoubleClick", 1f);
             time -= 1f;
+            
         }
         matchCount++;
-        firstCard = null;
-        secondCard = null;
     }
 
 
     void stopDoubleClick()
     {
         tryChance = true;
+        firstCard = null;
+        secondCard = null;
     }
 
     void ShowNameText(string name)
