@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public int matchCount;
 
+    float checkTime = 0;
+
     //초반에 클릭 못하게 막기 및 2개 확인후에 진행되게끔 변경
     public bool tryChance = false;
 
@@ -103,6 +105,20 @@ public class GameManager : MonoBehaviour
             {
                 GameEnd();
             }
+        }
+
+        if(firstCard != null)
+        {
+            checkTime += Time.deltaTime;
+            if(checkTime >= 3)
+            {
+                firstCard.GetComponent<card>().CloseCard();
+                firstCard = null;
+            }
+        }
+        else
+        {
+            checkTime = 0;
         }
     }
 
