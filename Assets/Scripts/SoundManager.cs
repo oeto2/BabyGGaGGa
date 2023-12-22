@@ -16,12 +16,6 @@ public class SoundManager : MonoBehaviour
     //플립 효과음
     public AudioClip audio_Flip;
 
-    //티모 웃음소리
-    public AudioClip audio_Teemo;
-
-    //롤 패배 소리
-    public AudioClip audio_Defeat;
-
     //클릭 소리
     public AudioClip[] audio_Click;
   
@@ -66,6 +60,7 @@ public class SoundManager : MonoBehaviour
     //효과음 재생
     public void PlayEffectSound(AudioClip _clip)
     {
+
         if(_clip != null)
         {
             //클립 변경
@@ -74,6 +69,8 @@ public class SoundManager : MonoBehaviour
         
         if(audioSource != null)
         {
+            audioSource.Stop();
+
             //효과음 재생
             audioSource.PlayOneShot(_clip);
         }
