@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
                 //종료시키자!!
                 Time.timeScale = 0f;
                 endText.SetActive(true);
-                //Invoke("GameEnd", 1f);
+                Invoke("GameEnd", 1f);
             }
         }
         else
