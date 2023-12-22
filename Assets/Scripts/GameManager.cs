@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject firstCard;
     public GameObject secondCard;
 
+    public Animator txtAnim;
+
 
     public int matchCount;
 
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
             {
                 BgmManger.instance.ChangeBGMSpeed(1.3f);
                 timeText.color = new Color(255, 0, 0, 255);
+                txtAnim.SetBool("light", true);
             }
 
             //게임 오버
