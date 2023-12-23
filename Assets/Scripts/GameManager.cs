@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    cameraShake camera;
+    public float VibrateForTime = 0.5f;
+
     public Text timeText;
     public Text NameText;
     public GameObject endText;
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
         GenerateCard();
         Time.timeScale = 1f;
         isCardGenerated = false;
-
+        camera = GameObject.FindWithTag("MainCamera").GetComponent<cameraShake>();
         /*
         int[] cards = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9};
         cards = cards.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
@@ -177,7 +180,7 @@ public class GameManager : MonoBehaviour
             secondCard.GetComponent<card>().CloseCard();
             Invoke("stopDoubleClick", 1f);
             time -= 1f;
-            
+            camera.VibrateForTime(VibrateForTime);
         }
         matchCount++;
     }
