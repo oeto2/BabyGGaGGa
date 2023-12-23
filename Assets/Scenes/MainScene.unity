@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShakeAmount: 0.3
+  ShakeTime: 0
 --- !u!1 &532075169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,8 +1172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1363269501}
-  audio_Match: {fileID: 8300000, guid: 070693f3bb7bb1447a239cea1c161dd6, type: 3}
-  audio_Flip: {fileID: 8300000, guid: 5831a39ff165c6c4b882ac1af094119c, type: 3}
+  audio_Match: {fileID: 8300000, guid: 6f300d5f349f37149be1c4ec14bf11f3, type: 3}
+  audio_Flip: {fileID: 8300000, guid: 799ce3d261e731745b874a7b7831aa26, type: 3}
   audio_Click:
   - {fileID: 8300000, guid: 3a32494b38a2f06448d0136780a335a2, type: 3}
   - {fileID: 8300000, guid: d4433078e095528478ab946bb4c8c2ff, type: 3}
