@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isCardGenerated = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<cameraShake>();
+        Invoke("tryChanceTrue", 1f);
         /*
         int[] cards = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9};
         cards = cards.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
@@ -127,6 +128,10 @@ public class GameManager : MonoBehaviour
             checkTime = 0;
         }
     }
+    void tryChanceTrue()
+    {
+        tryChance = true;
+    }
 
     public void IsMatched()
     {
@@ -174,7 +179,7 @@ public class GameManager : MonoBehaviour
         //∆≤∑»¿ª ∂ß 
         else
         {
-            Invoke("FailCard", 0.5f);
+            Invoke("FailCard", 0.7f);
         }
         matchCount++;
     }
@@ -270,7 +275,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(waitSeconds);
         }
         isCardGenerated = true;
-        tryChance = true;
     }
 
 }
