@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     float checkTime = 0;
 
+    bool isGameOver = false;
     //초반에 클릭 못하게 막기 및 2개 확인후에 진행되게끔 변경
     public bool tryChance = false;
 
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
             
 
             //게임 오버
-            if (time <= 0.0f)
+            if (time <= 0.0f && !isGameOver)
             {
                 GameEnd();
             }
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour
             if (cardsLeft == 2)
             {
                 //종료시키자!!
+                BgmManger.instance.audioSource.Stop();
                 BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
                 Time.timeScale = 0f;
                 endText.SetActive(true);
@@ -202,8 +204,9 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
+        BgmManger.instance.audioSource.Stop();
         EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
-        //종료시키자!!
+        isGameOver = true;
         Time.timeScale = 0f;
         endText.SetActive(true);
     }

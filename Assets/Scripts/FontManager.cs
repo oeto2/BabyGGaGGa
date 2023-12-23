@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-using Unity.VisualScripting;
+
 
 
 public class FontManager : MonoBehaviour
@@ -49,7 +47,7 @@ public class FontManager : MonoBehaviour
 
         foreach (Text t in allTextObjects)
         {
-            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]); ;
+            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]); 
         }
     }
 }
