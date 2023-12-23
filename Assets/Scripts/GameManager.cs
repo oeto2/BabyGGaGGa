@@ -9,8 +9,7 @@ using Unity.Collections.LowLevel.Unsafe;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-
-    cameraShake camera;
+    new cameraShake camera;
     public float VibrateForTime = 0.5f;
 
     public Text timeText;
@@ -172,19 +171,31 @@ public class GameManager : MonoBehaviour
             }
             
         }
+        //틀렸을 때 
         else
         {
-            EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Teemo);
-            ShowNameText("실패");
-            firstCard.GetComponent<card>().CloseCard();
-            secondCard.GetComponent<card>().CloseCard();
-            Invoke("stopDoubleClick", 1f);
-            time -= 1f;
-            camera.VibrateForTime(VibrateForTime);
+            Invoke("FailCard", 0.5f);
         }
         matchCount++;
     }
 
+    void FailCard()
+    {
+        EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Teemo);
+        ShowNameText("실패");
+        firstCard.GetComponent<card>().CloseCard();
+        secondCard.GetComponent<card>().CloseCard();
+        Invoke("stopDoubleClick", 1f);
+        time -= 1f;
+        txtAnim.SetBool("fail", true);
+        camera.VibrateForTime(VibrateForTime);
+        Invoke("TxtAnimRelese", 1f);
+    }
+
+    void TxtAnimRelese()
+    {
+        txtAnim.SetBool("fail", false);
+    }
 
     void stopDoubleClick()
     {
@@ -209,7 +220,9 @@ public class GameManager : MonoBehaviour
     {
         BgmManger.instance.audioSource.Stop();
         EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
+        time = 0;
         isGameOver = true;
+        camera.endGame();
         Time.timeScale = 0f;
         endText.SetActive(true);
     }

@@ -6,12 +6,17 @@ public class cameraShake : MonoBehaviour
 {
     public float ShakeAmount;
 
-    float ShakeTime;
+    public float ShakeTime;
     Vector3 initialPosition;
 
     public void VibrateForTime(float time)
     {
         ShakeTime = time;
+    }
+
+    public void endGame()
+    {
+        ShakeTime = 0;
     }
 
     // Start is called before the first frame update
