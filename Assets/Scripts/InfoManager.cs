@@ -30,6 +30,11 @@ public class InfoManager : MonoBehaviour
     public int comboUpLevel = 1;
 
 
+    //UpGrade Cost
+    public int timeUpCost = 100;
+    public int scoreUpCost = 100;
+    public int comboUpCost = 100;
+
     private void Awake()
     {
         if (instance == null)
