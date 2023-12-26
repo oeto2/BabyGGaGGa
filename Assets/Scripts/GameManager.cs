@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     new cameraShake camera;
-    public float VibrateForTime = 0.5f;
+    public float VibrateForTime = 0.2f;
 
     public Text timeText;
     public Text NameText;
@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
     public Text[] endTitleArrText;   // 게임 종료시 타이틀
 
     public GameObject card;
-    float time = 60.0f;
+
+    
+    float time = 60.0f + (InfoManager.instance.timeUpLevel * 2);
     float item;
 
-    int scorePower = 10;
-    int comboPower = 2;
+    int scorePower = 10 + (InfoManager.instance.scoreUpLevel - 2);
+    int comboPower = 1 + InfoManager.instance.comboUpLevel;
 
     public GameObject firstCard;
     public GameObject secondCard;
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isCardGenerated = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<cameraShake>();
-        Invoke("tryChanceTrue", 1f);
+        Invoke("tryChanceTrue", 0.3f);
 
     }
     // Update is called once per frame
@@ -137,7 +139,7 @@ public class GameManager : MonoBehaviour
 
     public void IsMatched()
     {
-        if (Maxcombo <= combo) Maxcombo = combo;
+        
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         Vector2 firstCardPos = new Vector2(firstCard.transform.position.x, firstCard.transform.position.y);
@@ -146,6 +148,7 @@ public class GameManager : MonoBehaviour
         if (firstCardImage == secondCardImage && firstCardPos != secondCardPos)
         {
             combo++;
+            if (Maxcombo <= combo) Maxcombo = combo;
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
 
@@ -162,7 +165,7 @@ public class GameManager : MonoBehaviour
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
 
-            Invoke("stopDoubleClick", 1f);
+            Invoke("stopDoubleClick", 0.3f);
             //윤재현님 코드
             switch (firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name)
             {
@@ -202,7 +205,7 @@ public class GameManager : MonoBehaviour
         ShowNameText("실패");
         firstCard.GetComponent<card>().CloseCard();
         secondCard.GetComponent<card>().CloseCard();
-        Invoke("stopDoubleClick", 1f);
+        Invoke("stopDoubleClick", 0.3f);
         //time -= 1f;
         score = score == 0 ? 0 : score - 1;
         
@@ -248,7 +251,7 @@ public class GameManager : MonoBehaviour
         endTitleArrText[3].text = matchCount.ToString();
         endTitleArrText[4].text = Maxcombo.ToString();
         endTitleArrText[5].text = (score / 10).ToString();
-
+        InfoManager.instance.AddGold(score / 10);
         Time.timeScale = 0f;
         StartText.SetActive(false);
         endText.SetActive(true);

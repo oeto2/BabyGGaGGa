@@ -30,7 +30,7 @@ public class card : MonoBehaviour
             if (GameManager.instance.firstCard == null)
             {
                 GameManager.instance.firstCard = this.gameObject;
-                Invoke("stopDoubleClick", 0.5f);
+                Invoke("stopDoubleClick", 0.3f);
             }
             else
             {
