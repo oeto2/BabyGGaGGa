@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using System.Collections.Generic;
 using System;
-using Unity.VisualScripting;
+using static UnityEditor.Progress;
 
 
 
@@ -10,7 +11,8 @@ public class FontManager : MonoBehaviour
 {
     //싱글톤 패턴
     public static FontManager instance = null;
-    public Dropdown dropdown;
+    public GameObject items;
+    public Text[] TextBox;
 
     //폰트 string 배열로 추가 하기 텍스트를 계속 추가하면 됨
     public string[] Fonts = {
@@ -25,13 +27,9 @@ public class FontManager : MonoBehaviour
         "Assets/Fonts/Sejong hospital Bold.ttf", //8.세종호텔 볼드
         "Assets/Fonts/Sejong hospital Light.ttf" //9.세종호텔 라이트
     };
-    
-    void Start()
-    {
-        ChangeAllFonts(0);
-    }
 
-    
+
+
     public void Awake()
     {
         //싱글톤
@@ -44,6 +42,7 @@ public class FontManager : MonoBehaviour
         {
             if (instance != this)
             {
+                Debug.Log("날아감");
                 Destroy(this.gameObject);
             }
         }
@@ -57,9 +56,30 @@ public class FontManager : MonoBehaviour
 
         foreach (Text t in allTextObjects)
         {
-            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
-        }
+            for (int i = 0; i < TextBox.Length; i++)
+            {
+                if (t != GameObject.Find("Canvas/optionPage/Dropdown/Dropdown List/Viewport/Content").GetComponentsInChildren<Text>()[i])
+                {
+                    t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
+                }
+            }
 
+        }
+    }
+    public void IndropdownFontChange()
+    {
+        Invoke("dropdownFontChange", 0.1f);
+
+    }
+
+    public void dropdownFontChange()
+    {
+        items = GameObject.Find("Canvas/optionPage/Dropdown/Dropdown List/Viewport/Content");
+        TextBox = items.GetComponentsInChildren<Text>();
+        for (int i = 0; i < TextBox.Length; i++)
+        {
+            TextBox[i].font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[i]);
+        }
     }
 
 }
