@@ -23,11 +23,13 @@ public class diffBtn : MonoBehaviour
         {
             transform.Find("Normal").gameObject.SetActive(false);
             transform.Find("Hard").gameObject.SetActive(true);
+            InfoManager.instance.int_level = 1;
         }
         else
         {
             transform.Find("Normal").gameObject.SetActive(true);
             transform.Find("Hard").gameObject.SetActive(false);
+            InfoManager.instance.int_level = 0;
         }
     }
 }
