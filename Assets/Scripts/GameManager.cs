@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
     {
         ComboEffect.gameObject.SetActive(true);
         ComboEffect.text = "Combo" + (combo - 1);
-
+        EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Combo);
         Invoke("ComboHide", 1f);
     }
     void ComboHide()
