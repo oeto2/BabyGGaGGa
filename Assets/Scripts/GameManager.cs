@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     float time = 60.0f;
     float item;
 
+    int scorePower;
+    int comboPower;
+
     public GameObject firstCard;
     public GameObject secondCard;
 
@@ -139,16 +142,13 @@ public class GameManager : MonoBehaviour
 
             if (combo == 1)
             {
-                score += 10;
+                score += scorePower;
             }
-            else if (combo == 2)
+            else 
             {
-                score += 20;
+                score += scorePower * comboPower;
             }
-            else
-            {
-                score += 30;
-            }
+
 
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
@@ -300,9 +300,7 @@ public class GameManager : MonoBehaviour
 
                 score = tmpScore;
             }
-        }
-        for (int i = 0; i < 3; i++)
-        {
+
             PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
         }
     }

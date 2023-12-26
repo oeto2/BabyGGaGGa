@@ -1032,6 +1032,10 @@ MonoBehaviour:
   txtAnim: {fileID: 2141771226}
   matchCount: 0
   tryChance: 0
+  combo: 0
+  scoreData: []
+  score: 0
+  scoreText: {fileID: 1284630232}
 --- !u!4 &1145625570
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class InfoManager : MonoBehaviour
     public int int_level = 0;
 
     //멤버 정보값 배열
-    public bool[] unlockInfo;
+    public bool[] unlockInfo = new bool[9];
 
     private void Awake()
     {
