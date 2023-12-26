@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c20dc1657e3f42488ed2dd9a9bf864d
+guid: b24e423f3316e144aa1f3fbb3accae11
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AdobeStock_521010925_0
+      name: imgbin_button-quartz-icon-png_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 5355
-        height: 2801
+        x: 120
+        y: 377
+        width: 315
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8d7c914461ca954996ccac5c1a51fa0
-      internalID: -746821359
+      spriteID: acac4b16780eb9949b13e88e9b3dfe06
+      internalID: -718679967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_button-quartz-icon-png_1
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 216
+        width: 315
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879e6e64225d7864e860b8040b996948
+      internalID: -56012548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_button-quartz-icon-png_2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 70
+        width: 267
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1098a0359853d8140b0eb9863d8be717
+      internalID: -990687897
       vertices: []
       indices: 
       edges: []
@@ -141,7 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AdobeStock_521010925_0: -746821359
+      imgbin_button-quartz-icon-png_0: -718679967
+      imgbin_button-quartz-icon-png_1: -56012548
+      imgbin_button-quartz-icon-png_2: -990687897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
