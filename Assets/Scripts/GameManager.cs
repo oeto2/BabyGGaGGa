@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     
     public int combo;
     public Text[] scoreData;
-    public int score;
+    public int score = 0;
     public Text scoreText;
     private int[] bestScore;
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-
+        scoreText.text = score.ToString();
         //ƒ´µÂ πËƒ°
         if (isCardGenerated == false)
         {
@@ -157,16 +157,16 @@ public class GameManager : MonoBehaviour
             //¿±¿Á«ˆ¥‘ ƒ⁄µÂ
             switch (firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name)
             {
-                case "card0": ShowNameText("√÷√∂»Ø ∆¿¿Â"); break;
-                case "card1": ShowNameText("√÷√∂»Ø ∆¿¿Â"); break;
-                case "card2": ShowNameText("π⁄¡ˆ»∆A"); break;
-                case "card3": ShowNameText("π⁄¡ˆ»∆A"); break;
-                case "card4": ShowNameText("¿±¿Á«ˆ"); break;
-                case "card5": ShowNameText("¿±¿Á«ˆ"); break;
-                case "card6": ShowNameText("¿ÃªÛπŒ"); break;
-                case "card7": ShowNameText("¿ÃªÛπŒ"); break;
-                case "card8": ShowNameText("¿Ã¿Á«Â"); break;
-                case "card9": ShowNameText("¿Ã¿Á«Â"); break;
+                case "card0": InfoManager.instance.unlockInfo[0] = true; ShowNameText("√÷√∂»Ø ∆¿¿Â"); break;
+                case "card1": InfoManager.instance.unlockInfo[1] = true; ShowNameText("√÷√∂»Ø ∆¿¿Â"); break;
+                case "card2": InfoManager.instance.unlockInfo[2] = true; ShowNameText("π⁄¡ˆ»∆A"); break;
+                case "card3": InfoManager.instance.unlockInfo[3] = true; ShowNameText("π⁄¡ˆ»∆A"); break;
+                case "card4": InfoManager.instance.unlockInfo[4] = true; ShowNameText("¿±¿Á«ˆ"); break;
+                case "card5": InfoManager.instance.unlockInfo[5] = true; ShowNameText("¿±¿Á«ˆ"); break;
+                case "card6": InfoManager.instance.unlockInfo[6] = true; ShowNameText("¿ÃªÛπŒ"); break;
+                case "card7": InfoManager.instance.unlockInfo[7] = true; ShowNameText("¿ÃªÛπŒ"); break;
+                case "card8": InfoManager.instance.unlockInfo[8] = true; ShowNameText("¿Ã¿Á«Â"); break;
+                case "card9": InfoManager.instance.unlockInfo[9] = true; ShowNameText("¿Ã¿Á«Â"); break;
             }
             if (cardsLeft == 2)
             {
@@ -181,8 +181,6 @@ public class GameManager : MonoBehaviour
         //∆≤∑»¿ª ∂ß 
         else
         {
-            score -= 1;
-            combo = 0;
             Invoke("FailCard", 0.7f);
         }
         matchCount++;
@@ -195,7 +193,9 @@ public class GameManager : MonoBehaviour
         firstCard.GetComponent<card>().CloseCard();
         secondCard.GetComponent<card>().CloseCard();
         Invoke("stopDoubleClick", 1f);
-        time -= 1f;
+        //time -= 1f;
+        score = score == 0 ? 0 : score - 1;
+        combo = 0;
         txtAnim.SetBool("fail", true);
         camera.VibrateForTime(VibrateForTime);
         Invoke("TxtAnimRelese", 1f);
