@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class InfoManager : MonoBehaviour
@@ -20,6 +21,12 @@ public class InfoManager : MonoBehaviour
     //¸â¹ö Á¤º¸°ª ¹è¿­
     public bool[] unlockInfo;
 
+    //ÇöÀç ¼ÒÁö °ñµå
+    public int int_CurGold = 0;
+    
+    //UpGrade Levels
+    
+
     private void Awake()
     {
         if (instance == null)
@@ -34,5 +41,12 @@ public class InfoManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    //°ñµå È¹µæ
+    public void AddGold(int _value)
+    {
+        //°ñµå Ãß°¡
+        int_CurGold += _value;
     }
 }

@@ -10,6 +10,7 @@ public class TitleBgmManager : MonoBehaviour
     //오디오 클립
     public AudioClip[] clip_Title;
 
+
     private void Start()
     {
         //배경음악 재생
