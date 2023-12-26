@@ -135,7 +135,9 @@ public class GameManager : MonoBehaviour
             if (checkTime >= 3)
             {
                 firstCard.GetComponent<card>().CloseCard();
+                secondCard.GetComponent<card>().CloseCard();
                 firstCard = null;
+                secondCard = null;
                 matchCount++;
             }
         }
@@ -282,8 +284,6 @@ public class GameManager : MonoBehaviour
         StartText.SetActive(false);
         endText.SetActive(true);
         score += (int)time;
-        
-        //LoadScore();
     }
 
     public void RetryGame()
@@ -366,31 +366,8 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("BestScore", score);
         }
-        
-        //int tmpScore = 0;
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    bestScore[i] = PlayerPrefs.GetInt(i + "BestScore");
-        //    while (bestScore[i] < score)
-        //    {
-        //        tmpScore = bestScore[i];
-        //        bestScore[i] = score;
-        //
-        //        PlayerPrefs.SetInt(i + "BestScore", score);
-        //
-        //        score = tmpScore;
-        //    }
-        //
-        //    PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
-        //}
     }
-    //public void LoadScore()
-    //{
-    //    for (int i = 0; i < 3; i++)
-    //    {
-    //        scoreData[i].text = PlayerPrefs.GetInt(i + "BestScore").ToString();
-    //    }
-    //}
+
 
 }
 
