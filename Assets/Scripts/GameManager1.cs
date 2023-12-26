@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private int[] bestScore = new int[3];
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
     public bool cardOpen;
+    public int matchCount;
+    float checkTime = 0;
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();	// Generated 할 카드 오브젝트와 분배할 위치를 Dictionary에 저장
 
@@ -100,6 +102,7 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(GenerateCardMoveToTarget(0.03f));
         }
+
         if (time <= 10.0f)
         {
             timeText.color = Color.red;
@@ -108,6 +111,21 @@ public class GameManager : MonoBehaviour
         if (time <= 0.0f)
         {
             GameEnd();
+        }
+        if (firstCard != null)
+        {
+            checkTime += Time.deltaTime;
+            if (checkTime >= 1.5f)
+            {
+                firstCard.GetComponent<card>().CloseCard();
+                firstCard = null;
+                matchCount++;
+            }
+            else return;
+        }
+        else
+        {
+            checkTime = 0;
         }
     }
 
