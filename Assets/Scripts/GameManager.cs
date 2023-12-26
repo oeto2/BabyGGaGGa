@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
             }
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             //½Â¸®
-            if (cardsLeft == 0)
+            if (cardsLeft == 0 && !isGameOver)
             {
                 BgmManger.instance.audioSource.Stop();
                 BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
