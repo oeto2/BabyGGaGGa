@@ -15,6 +15,11 @@ public class ShopManager : MonoBehaviour
     //Cur Gold_Text
     public Text text_CurGold;
 
+    //Level Text
+    public Text text_TimeLevel;
+    public Text text_ScoreLevel;
+    public Text text_ComboLevel;
+
     private void Awake()
     {
         if(instance == null)
@@ -43,5 +48,26 @@ public class ShopManager : MonoBehaviour
     public void CloseShop()
     {
         obj_ShopUi.SetActive(false);
+    }
+
+    //Upgrade Time
+    public void UpgradeTimeButton_Click()
+    {
+        InfoManager.instance.timeUpLevel++;
+        text_TimeLevel.text = "LV" + InfoManager.instance.timeUpLevel.ToString();
+    }
+
+    //Upgrade Score
+    public void UpgradeScoreButton_Click()
+    {
+        InfoManager.instance.scoreUpLevel++;
+        text_ScoreLevel.text = "LV" + InfoManager.instance.scoreUpLevel.ToString();
+    }
+
+    //Upgrade Combo
+    public void UpgradeComboButton_Click()
+    {
+        InfoManager.instance.comboUpLevel++;
+        text_ComboLevel.text = "LV" + InfoManager.instance.comboUpLevel.ToString();
     }
 }
