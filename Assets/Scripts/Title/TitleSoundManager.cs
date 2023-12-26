@@ -28,6 +28,14 @@ public class TitleSoundManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            ShopManager.instance.ShowShop();
+        }
+    }
+
     //버튼 클릭 효과음 재생
     public void PlayButtonClick(AudioClip _clip)
     {

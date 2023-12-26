@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class InfoManager : MonoBehaviour
@@ -20,6 +21,20 @@ public class InfoManager : MonoBehaviour
     //¸â¹ö Á¤º¸°ª ¹è¿­
     public bool[] unlockInfo = new bool[9];
 
+    //ÇöÀç ¼ÒÁö °ñµå
+    public int int_CurGold = 0;
+
+    //UpGrade Level
+    public int timeUpLevel = 1;
+    public int scoreUpLevel = 1;
+    public int comboUpLevel = 1;
+
+
+    //UpGrade Cost
+    public int timeUpCost = 100;
+    public int scoreUpCost = 100;
+    public int comboUpCost = 100;
+
     private void Awake()
     {
         if (instance == null)
@@ -34,5 +49,12 @@ public class InfoManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    //°ñµå È¹µæ
+    public void AddGold(int _value)
+    {
+        //°ñµå Ãß°¡
+        int_CurGold += _value;
     }
 }
