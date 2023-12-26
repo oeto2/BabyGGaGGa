@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
         }
+        score = PlayerPrefs.GetInt("CurrentScore");
     }
     public void LoadScore()
     {
