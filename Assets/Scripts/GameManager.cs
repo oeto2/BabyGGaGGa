@@ -176,6 +176,7 @@ public class GameManager : MonoBehaviour
                 case "card7": InfoManager.instance.unlockInfo[7] = true; ShowNameText("¿ÃªÛπŒ"); break;
                 case "card8": InfoManager.instance.unlockInfo[8] = true; ShowNameText("¿Ã¿Á«Â"); break;
                 case "card9": InfoManager.instance.unlockInfo[9] = true; ShowNameText("¿Ã¿Á«Â"); break;
+                default: break;
             }
             if (cardsLeft == 2)
             {
