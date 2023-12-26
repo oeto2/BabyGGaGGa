@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public Text[] scoreData;
     public int score = 0;
     public Text scoreText;
-    private int[] bestScore;
+    private int[] bestScore = new int[3];
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();
     int cardsLeft;
