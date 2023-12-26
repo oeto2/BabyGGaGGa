@@ -127,6 +127,15 @@ public class GameManager : MonoBehaviour
                 EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
                 GameEnd();
             }
+
+            //Ω¬∏Æ
+            if (cardsLeft == 0)
+            {
+                BgmManger.instance.audioSource.Stop();
+                BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
+                endTitleArrText[0].text = "Ω¬∏Æ";
+                GameEnd();
+            }
         }
 
         if (firstCard != null)
@@ -134,10 +143,7 @@ public class GameManager : MonoBehaviour
             checkTime += Time.deltaTime;
             if (checkTime >= 3)
             {
-                firstCard.GetComponent<card>().CloseCard();
-                secondCard.GetComponent<card>().CloseCard();
-                firstCard = null;
-                secondCard = null;
+                Invoke("FailCard", 0.7f);
                 matchCount++;
             }
         }
@@ -145,6 +151,8 @@ public class GameManager : MonoBehaviour
         {
             checkTime = 0;
         }
+
+        
     }
     void tryChanceTrue()
     {
@@ -196,14 +204,7 @@ public class GameManager : MonoBehaviour
                 case "card9": InfoManager.instance.unlockInfo[9] = true; ShowNameText("¿Ã¿Á«Â"); break;
                 default: break;
             }
-            if (cardsLeft == 2)
-            {
-                //¡æ∑·Ω√≈∞¿⁄!!
-                BgmManger.instance.audioSource.Stop();
-                BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
-                endTitleArrText[0].text = "Ω¬∏Æ";
-                GameEnd();
-            }
+            
 
         }
         //∆≤∑»¿ª ∂ß 
