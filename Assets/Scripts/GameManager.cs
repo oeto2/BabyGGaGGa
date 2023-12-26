@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
     bool isGameOver = false;
     //초반에 클릭 못하게 막기 및 2개 확인후에 진행되게끔 변경
     public bool tryChance = false;
+    
+    public int combo;
+    public Text[] scoreData;
+    public int score;
+    public Text scoreText;
+    private int[] bestScore;
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();
     int cardsLeft;
@@ -64,23 +70,7 @@ public class GameManager : MonoBehaviour
         isCardGenerated = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<cameraShake>();
         Invoke("tryChanceTrue", 1f);
-        /*
-        int[] cards = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9};
-        cards = cards.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
-
-        for (int i = 0; i < 20; i++)
-        {
-            GameObject newCard = Instantiate(card);
-            newCard.transform.parent = GameObject.Find("Cards").transform;
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.7f;
-
-            newCard.transform.position = new Vector3(x, y, 0);
-
-            string rtanName = "card" + cards[i].ToString();
-            newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(rtanName);
-        }
-        */
+       
     }
     // Update is called once per frame
     void Update()
@@ -121,6 +111,7 @@ public class GameManager : MonoBehaviour
             {
                 firstCard.GetComponent<card>().CloseCard();
                 firstCard = null;
+                matchCount++;
             }
         }
         else
@@ -142,10 +133,22 @@ public class GameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage && firstCardPos != secondCardPos)
         {
+            combo++;
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
 
-            
+            if (combo == 1)
+            {
+                score += 10;
+            }
+            else if (combo == 2)
+            {
+                score += 20;
+            }
+            else
+            {
+                score += 30;
+            }
 
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
@@ -172,13 +175,14 @@ public class GameManager : MonoBehaviour
                 BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
                 Time.timeScale = 0f;
                 endText.SetActive(true);
-                //Invoke("GameEnd", 1f);
             }
             
         }
         //틀렸을 때 
         else
         {
+            score -= 1;
+            combo = 0;
             Invoke("FailCard", 0.7f);
         }
         matchCount++;
@@ -230,6 +234,9 @@ public class GameManager : MonoBehaviour
         camera.endGame();
         Time.timeScale = 0f;
         endText.SetActive(true);
+        score += (int)time;
+        SaveScore();
+        LoadScore();
     }
 
     public void RetryGame()
@@ -275,6 +282,36 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(waitSeconds);
         }
         isCardGenerated = true;
+    }
+
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("CurrentScore", score);
+        int tmpScore = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            bestScore[i] = PlayerPrefs.GetInt(i + "BestScore");
+            while (bestScore[i] < score)
+            {
+                tmpScore = bestScore[i];
+                bestScore[i] = score;
+
+                PlayerPrefs.SetInt(i + "BestScore", score);
+
+                score = tmpScore;
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
+        }
+    }
+    public void LoadScore()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            scoreData[i].text = PlayerPrefs.GetInt(i + "BestScore").ToString();
+        }
     }
 
 }
