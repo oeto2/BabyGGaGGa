@@ -21,4 +21,9 @@ public class EndText : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+
+    public void title()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }

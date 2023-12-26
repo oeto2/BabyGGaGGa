@@ -14,13 +14,17 @@ public class GameManager : MonoBehaviour
 
     public Text timeText;
     public Text NameText;
+    public GameObject StartText;
     public GameObject endText;
+
+    public Text[] endTitleArrText;   // 게임 종료시 타이틀
+
     public GameObject card;
     float time = 60.0f;
     float item;
 
-    int scorePower;
-    int comboPower;
+    int scorePower = 10;
+    int comboPower = 2;
 
     public GameObject firstCard;
     public GameObject secondCard;
@@ -36,11 +40,12 @@ public class GameManager : MonoBehaviour
     //초반에 클릭 못하게 막기 및 2개 확인후에 진행되게끔 변경
     public bool tryChance = false;
 
+    public int Maxcombo;
     public int combo;
     public Text[] scoreData;
     public int score = 0;
     public Text scoreText;
-    private int[] bestScore = new int[3];
+    private int bestScore;
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();
     int cardsLeft;
@@ -103,6 +108,9 @@ public class GameManager : MonoBehaviour
             //게임 오버
             if (time <= 0.0f && !isGameOver)
             {
+                endTitleArrText[0].text = "패배";
+                BgmManger.instance.audioSource.Stop();
+                EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
                 GameEnd();
             }
         }
@@ -129,6 +137,7 @@ public class GameManager : MonoBehaviour
 
     public void IsMatched()
     {
+        if (Maxcombo <= combo) Maxcombo = combo;
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         Vector2 firstCardPos = new Vector2(firstCard.transform.position.x, firstCard.transform.position.y);
@@ -146,7 +155,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                score += scorePower * comboPower;
+                score += scorePower * comboPower * combo;
             }
 
 
@@ -173,8 +182,8 @@ public class GameManager : MonoBehaviour
                 //종료시키자!!
                 BgmManger.instance.audioSource.Stop();
                 BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
-                Time.timeScale = 0f;
-                endText.SetActive(true);
+                endTitleArrText[0].text = "승리";
+                GameEnd();
             }
 
         }
@@ -195,6 +204,7 @@ public class GameManager : MonoBehaviour
         Invoke("stopDoubleClick", 1f);
         //time -= 1f;
         score = score == 0 ? 0 : score - 1;
+        
         combo = 0;
         txtAnim.SetBool("fail", true);
         camera.VibrateForTime(VibrateForTime);
@@ -227,16 +237,23 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
-        BgmManger.instance.audioSource.Stop();
-        EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
+        
         time = 0;
         isGameOver = true;
         camera.endGame();
+        SaveScore();
+        endTitleArrText[1].text = PlayerPrefs.GetInt("BestScore").ToString(); ;
+        endTitleArrText[2].text = score.ToString();
+        endTitleArrText[3].text = matchCount.ToString();
+        endTitleArrText[4].text = Maxcombo.ToString();
+        endTitleArrText[5].text = (score / 10).ToString();
+
         Time.timeScale = 0f;
+        StartText.SetActive(false);
         endText.SetActive(true);
         score += (int)time;
-        SaveScore();
-        LoadScore();
+        
+        //LoadScore();
     }
 
     public void RetryGame()
@@ -286,31 +303,36 @@ public class GameManager : MonoBehaviour
 
     public void SaveScore()
     {
-        PlayerPrefs.SetInt("CurrentScore", score);
-        int tmpScore = 0;
-        for (int i = 0; i < 3; i++)
+        bestScore = PlayerPrefs.GetInt("BestScore");
+        if (bestScore < score)
         {
-            bestScore[i] = PlayerPrefs.GetInt(i + "BestScore");
-            while (bestScore[i] < score)
-            {
-                tmpScore = bestScore[i];
-                bestScore[i] = score;
-
-                PlayerPrefs.SetInt(i + "BestScore", score);
-
-                score = tmpScore;
-            }
-
-            PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
+            PlayerPrefs.SetInt("BestScore", score);
         }
+        
+        //int tmpScore = 0;
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    bestScore[i] = PlayerPrefs.GetInt(i + "BestScore");
+        //    while (bestScore[i] < score)
+        //    {
+        //        tmpScore = bestScore[i];
+        //        bestScore[i] = score;
+        //
+        //        PlayerPrefs.SetInt(i + "BestScore", score);
+        //
+        //        score = tmpScore;
+        //    }
+        //
+        //    PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
+        //}
     }
-    public void LoadScore()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            scoreData[i].text = PlayerPrefs.GetInt(i + "BestScore").ToString();
-        }
-    }
+    //public void LoadScore()
+    //{
+    //    for (int i = 0; i < 3; i++)
+    //    {
+    //        scoreData[i].text = PlayerPrefs.GetInt(i + "BestScore").ToString();
+    //    }
+    //}
 
 }
 
