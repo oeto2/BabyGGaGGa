@@ -72,34 +72,87 @@ public class ShopManager : MonoBehaviour
     //Upgrade Time
     public void UpgradeTimeButton_Click()
     {
-        //Level Up
-        InfoManager.instance.timeUpLevel++;
-        text_TimeLevel.text = "LV" + InfoManager.instance.timeUpLevel.ToString();
+        //Time Upgrade Cost
+        int int_Cost = InfoManager.instance.timeUpCost;
 
-        //Cost Up
-        InfoManager.instance.timeUpCost += int_CostValue;
-        text_TimeUpCost.text = InfoManager.instance.timeUpCost.ToString();
+        //Use CurGold
+        if (InfoManager.instance.int_CurGold < int_Cost)
+        {
+            Debug.Log("소지금이 부족합니다.");
+        }
+        else
+        {
+            //Level Up
+            InfoManager.instance.timeUpLevel++;
+            text_TimeLevel.text = "LV" + InfoManager.instance.timeUpLevel.ToString();
+
+            //Cost Up
+            InfoManager.instance.timeUpCost += int_CostValue;
+            text_TimeUpCost.text = InfoManager.instance.timeUpCost.ToString();
+
+            //금액 차감
+            InfoManager.instance.int_CurGold -= int_Cost;
+            UpdateCurGold();
+        }
     }
 
     //Upgrade Score
     public void UpgradeScoreButton_Click()
     {
-        InfoManager.instance.scoreUpLevel++;
-        text_ScoreLevel.text = "LV" + InfoManager.instance.scoreUpLevel.ToString();
+        //Score Upgrade Cost
+        int int_Cost = InfoManager.instance.scoreUpCost;
 
-        //Cost Up
-        InfoManager.instance.scoreUpCost += int_CostValue;
-        text_ScoreUpCost.text = InfoManager.instance.scoreUpCost.ToString();
+        //Use CurGold
+        if (InfoManager.instance.int_CurGold < int_Cost)
+        {
+            Debug.Log("소지금이 부족합니다.");
+        }
+        else
+        {
+            //Level UP
+            InfoManager.instance.scoreUpLevel++;
+            text_ScoreLevel.text = "LV" + InfoManager.instance.scoreUpLevel.ToString();
+
+            //Cost Up
+            InfoManager.instance.scoreUpCost += int_CostValue;
+            text_ScoreUpCost.text = InfoManager.instance.scoreUpCost.ToString();
+
+            //금액 차감
+            InfoManager.instance.int_CurGold -= int_Cost;
+            UpdateCurGold();
+        }
     }
 
     //Upgrade Combo
     public void UpgradeComboButton_Click()
     {
-        InfoManager.instance.comboUpLevel++;
-        text_ComboLevel.text = "LV" + InfoManager.instance.comboUpLevel.ToString();
+        //Upgrade Cost
+        int int_Cost = InfoManager.instance.comboUpCost;
 
-        //Cost Up
-        InfoManager.instance.comboUpCost += int_CostValue;
-        text_ComboUpCost.text = InfoManager.instance.comboUpCost.ToString();
+        //Use CurGold
+        if (InfoManager.instance.int_CurGold < int_Cost)
+        {
+            Debug.Log("소지금이 부족합니다.");
+        }
+        else
+        {
+            //Level UP
+            InfoManager.instance.comboUpLevel++;
+            text_ComboLevel.text = "LV" + InfoManager.instance.comboUpLevel.ToString();
+
+            //Cost Up
+            InfoManager.instance.comboUpCost += int_CostValue;
+            text_ComboUpCost.text = InfoManager.instance.comboUpCost.ToString();
+
+            //금액 차감
+            InfoManager.instance.int_CurGold -= int_Cost;
+            UpdateCurGold();
+        }
+    }
+
+    //소지금 갱신
+    public void UpdateCurGold()
+    {
+        text_CurGold.text = InfoManager.instance.int_CurGold.ToString();
     }
 }
