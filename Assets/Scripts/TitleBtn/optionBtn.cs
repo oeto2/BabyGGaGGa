@@ -21,4 +21,9 @@ public class optionBtn : MonoBehaviour
     {
         transform.parent.Find("optionPage").gameObject.SetActive(true);
     }
+
+    public void ExitOptPage()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
 }

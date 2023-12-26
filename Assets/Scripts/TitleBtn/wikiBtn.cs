@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class wikiBtn : MonoBehaviour
 {
-    bool[] unlocks = {true, true, true, true, true, false, false, false, false, false };
+    public Animator anim;
 
+    string book;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +28,24 @@ public class wikiBtn : MonoBehaviour
 
     void unlockBook()
     {
+        InfoManager.instance.unlockInfo[0] = true;
         for (int i = 0; i < 10; i++)
         {
-            if (unlocks[i])
+            if (InfoManager.instance.unlockInfo[i])
             {
-                string book = "book" + i.ToString();
-                transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image").gameObject.SetActive(true);
-                transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("unlocked").gameObject.SetActive(false);
+                book = "book" + i.ToString();
+                anim = transform.parent.Find("wikiCanvas/wikibackground/" + book + "/unlocked").GetComponent<Animator>();
+                anim.SetBool("isOpen", true);
+
+                Invoke("Filp", 0.5f);
             }
         }
+    }
+
+    void Flip()
+    {
+        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image").gameObject.SetActive(true);
+        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("unlocked").gameObject.SetActive(false);
     }
 
     public void ShowwikiImage()

@@ -19,7 +19,7 @@ public class InfoManager : MonoBehaviour
     public int int_level = 0;
 
     //멤버 정보값 배열
-    public bool[] unlockInfo = new bool[9];
+    public bool[] unlockInfo = new bool[10];
 
     //현재 소지 골드
     public int int_CurGold = 0;

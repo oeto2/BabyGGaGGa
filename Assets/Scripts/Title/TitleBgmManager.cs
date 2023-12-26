@@ -10,7 +10,6 @@ public class TitleBgmManager : MonoBehaviour
     //오디오 클립
     public AudioClip[] clip_Title;
 
-
     private void Start()
     {
         //배경음악 재생
@@ -22,5 +21,16 @@ public class TitleBgmManager : MonoBehaviour
     {
         audioSource.volume = volume;
         InfoManager.instance.bgmValume = volume;
+        if (audioSource.volume == 0f)
+        {
+            GameObject.Find("Canvas/optionPage/bgmSliderImgOn").gameObject.SetActive(false);
+            GameObject.Find("Canvas/optionPage/bgmSliderImgOff").gameObject.SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("Canvas/optionPage/bgmSliderImgOn").gameObject.SetActive(true);
+            GameObject.Find("Canvas/optionPage/bgmSliderImgOff").gameObject.SetActive(false);
+        }
     }
+
 }

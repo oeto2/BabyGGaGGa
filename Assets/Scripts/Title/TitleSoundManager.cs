@@ -58,5 +58,15 @@ public class TitleSoundManager : MonoBehaviour
     {
         audioSource.volume = volume;
         InfoManager.instance.effectValume = volume;
+        if (audioSource.volume == 0f)
+        {
+            GameObject.Find("Canvas/optionPage/effectSliderImgOn").gameObject.SetActive(false);
+            GameObject.Find("Canvas/optionPage/effectSliderImgOff").gameObject.SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("Canvas/optionPage/effectSliderImgOn").gameObject.SetActive(true);
+            GameObject.Find("Canvas/optionPage/effectSliderImgOff").gameObject.SetActive(false);
+        }
     }
 }

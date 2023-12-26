@@ -66,11 +66,6 @@ public class FontManager : MonoBehaviour
 
         }
     }
-    public void IndropdownFontChange()
-    {
-        Invoke("dropdownFontChange", 0.1f);
-
-    }
 
     public void dropdownFontChange()
     {
