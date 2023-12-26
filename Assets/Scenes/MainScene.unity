@@ -803,7 +803,11 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 1973693330}
   combo: 0
-  isEnd: 0
+  scoreData:
+  - {fileID: 1488156311}
+  - {fileID: 607166245}
+  - {fileID: 274420263}
+  cardOpen: 0
 --- !u!4 &1145625570
 Transform:
   m_ObjectHideFlags: 0

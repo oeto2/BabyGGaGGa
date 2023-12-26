@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public int score;
     public Text scoreText;
     public int combo;
-    public Text[] scoreData;
+    public Text[] scoreData = new Text[3];
     private int[] bestScore = new int[3];
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
     public bool cardOpen;
