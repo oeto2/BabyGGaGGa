@@ -10,25 +10,21 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public Text timeText;
-<<<<<<< Updated upstream
-    public GameObject endText;
-    public GameObject card;
-    float time;
-=======
+
     public Text NameText;
     public Text thisscoreTxt;
     public GameObject endText;
     public GameObject card;
     float time = 6.0f;
->>>>>>> Stashed changes
+
     float item;
     public GameObject firstCard;
     public GameObject secondCard;
 
-<<<<<<< Updated upstream
+
     public AudioSource audioSource;
     public AudioClip match;
-=======
+
     public Animator txtAnim;
     public static gameManager I;
 
@@ -45,7 +41,7 @@ public class GameManager : MonoBehaviour
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();
     int cardsLeft;
     private bool isCardGenerated;
->>>>>>> Stashed changes
+
 
     private void Awake()
     {
@@ -62,10 +58,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-    // Start is called before the first frame update
-=======
->>>>>>> Stashed changes
     void Start()
     {
         Time.timeScale = 1f;
