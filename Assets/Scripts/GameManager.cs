@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject secondCard;
 
     public Animator txtAnim;
+    public Animator failAnim;
 
 
     public int matchCount;
@@ -235,14 +236,14 @@ public class GameManager : MonoBehaviour
         score = score == 0 ? 0 : score - 1;
         
         combo = 0;
-        txtAnim.SetBool("fail", true);
+        failAnim.SetBool("fail", true);
         camera.VibrateForTime(VibrateForTime);
         Invoke("TxtAnimRelese", 1f);
     }
 
     void TxtAnimRelese()
     {
-        txtAnim.SetBool("fail", false);
+        failAnim.SetBool("fail", false);
     }
 
     void stopDoubleClick()

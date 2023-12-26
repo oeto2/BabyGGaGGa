@@ -2302,6 +2302,7 @@ MonoBehaviour:
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
   txtAnim: {fileID: 2141771226}
+  failAnim: {fileID: 1284630234}
   matchCount: 0
   tryChance: 0
   Maxcombo: 0
@@ -2335,6 +2336,7 @@ GameObject:
   - component: {fileID: 1284630231}
   - component: {fileID: 1284630233}
   - component: {fileID: 1284630232}
+  - component: {fileID: 1284630234}
   m_Layer: 5
   m_Name: score
   m_TagString: Untagged
@@ -2403,6 +2405,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284630230}
   m_CullTransparentMesh: 1
+--- !u!95 &1284630234
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284630230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7ff936f6b34d2b40b85d058118ac695, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1323346218
 GameObject:
   m_ObjectHideFlags: 0
