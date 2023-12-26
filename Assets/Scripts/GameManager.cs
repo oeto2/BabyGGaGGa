@@ -4,28 +4,34 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    new cameraShake camera;
-    public float VibrateForTime = 0.5f;
 
     public Text timeText;
-    public Text NameText;
+<<<<<<< Updated upstream
     public GameObject endText;
     public GameObject card;
-    float time = 60.0f;
+    float time;
+=======
+    public Text NameText;
+    public Text thisscoreTxt;
+    public GameObject endText;
+    public GameObject card;
+    float time = 6.0f;
+>>>>>>> Stashed changes
     float item;
-
-    int scorePower;
-    int comboPower;
-
     public GameObject firstCard;
     public GameObject secondCard;
 
+<<<<<<< Updated upstream
+    public AudioSource audioSource;
+    public AudioClip match;
+=======
     public Animator txtAnim;
+    public static gameManager I;
+
 
 
     public int matchCount;
@@ -35,282 +41,107 @@ public class GameManager : MonoBehaviour
     bool isGameOver = false;
     //초반에 클릭 못하게 막기 및 2개 확인후에 진행되게끔 변경
     public bool tryChance = false;
-    
-    public int combo;
-    public Text[] scoreData;
-    public int score = 0;
-    public Text scoreText;
-    private int[] bestScore = new int[3];
 
     Dictionary<GameObject, Vector3> cardList = new Dictionary<GameObject, Vector3>();
     int cardsLeft;
     private bool isCardGenerated;
+>>>>>>> Stashed changes
 
     private void Awake()
     {
-        if (instance == null)
+        if(instance == null)
         {
             instance = this;
         }
         else
         {
-            if (instance != this)
+            if(instance != this)
             {
                 Destroy(this.gameObject);
             }
         }
     }
 
-
+<<<<<<< Updated upstream
+    // Start is called before the first frame update
+=======
+>>>>>>> Stashed changes
     void Start()
     {
-        //현재는 랜덤으로 폰트가 바뀌게 설정
-        FontManager.instance.ChangeAllFonts(Random.Range(0,10));
-
-        //카드 생성
-        GenerateCard();
         Time.timeScale = 1f;
-        isCardGenerated = false;
-        camera = GameObject.FindWithTag("MainCamera").GetComponent<cameraShake>();
-        Invoke("tryChanceTrue", 1f);
-       
+
+        int[] cards = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9};
+        cards = cards.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
+
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject newCard = Instantiate(card);
+            newCard.transform.parent = GameObject.Find("Cards").transform;
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.7f;
+
+            newCard.transform.position = new Vector3(x, y, 0);
+
+            string cardName = "card" + cards[i].ToString();
+            newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(cardName);
+        }
     }
+
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
+        timeText.text = time.ToString("N2");
 
-        scoreText.text = score.ToString();
-        //카드 배치
-        if (isCardGenerated == false)
+        //게임 오버
+        if(time >= 60f)
         {
-            StartCoroutine(GenerateCardMoveToTarget(0.03f));
+            GameEnd();
         }
-        else
-        {
-            
-            //박지훈A님 코드
-            time -= Time.deltaTime;
-            timeText.text = time.ToString("N0");
-
-            if (time <= 10.0f)
-            {
-                BgmManger.instance.ChangeBGMSpeed(1.3f);
-                txtAnim.SetBool("light", true);
-            }
-
-            
-
-            //게임 오버
-            if (time <= 0.0f && !isGameOver)
-            {
-                GameEnd();
-            }
-        }
-
-        if(firstCard != null)
-        {
-            checkTime += Time.deltaTime;
-            if(checkTime >= 3)
-            {
-                firstCard.GetComponent<card>().CloseCard();
-                firstCard = null;
-                matchCount++;
-            }
-        }
-        else
-        {
-            checkTime = 0;
-        }
-    }
-    void tryChanceTrue()
-    {
-        tryChance = true;
     }
 
     public void IsMatched()
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
-        Vector2 firstCardPos = new Vector2(firstCard.transform.position.x, firstCard.transform.position.y);
-        Vector2 secondCardPos = new Vector2(secondCard.transform.position.x, secondCard.transform.position.y);
 
-        if (firstCardImage == secondCardImage && firstCardPos != secondCardPos)
+
+        if(firstCardImage == secondCardImage)
         {
-            combo++;
+            audioSource.PlayOneShot(match);
+
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
 
-            if (combo == 1)
-            {
-                score += scorePower;
-            }
-            else 
-            {
-                score += scorePower * comboPower;
-            }
-
-
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
-            SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
-
-            Invoke("stopDoubleClick", 1f);
-            //윤재현님 코드
-            switch (firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name)
-            {
-                case "card0": InfoManager.instance.unlockInfo[0] = true; ShowNameText("최철환 팀장"); break;
-                case "card1": InfoManager.instance.unlockInfo[1] = true; ShowNameText("최철환 팀장"); break;
-                case "card2": InfoManager.instance.unlockInfo[2] = true; ShowNameText("박지훈A"); break;
-                case "card3": InfoManager.instance.unlockInfo[3] = true; ShowNameText("박지훈A"); break;
-                case "card4": InfoManager.instance.unlockInfo[4] = true; ShowNameText("윤재현"); break;
-                case "card5": InfoManager.instance.unlockInfo[5] = true; ShowNameText("윤재현"); break;
-                case "card6": InfoManager.instance.unlockInfo[6] = true; ShowNameText("이상민"); break;
-                case "card7": InfoManager.instance.unlockInfo[7] = true; ShowNameText("이상민"); break;
-                case "card8": InfoManager.instance.unlockInfo[8] = true; ShowNameText("이재헌"); break;
-                case "card9": InfoManager.instance.unlockInfo[9] = true; ShowNameText("이재헌"); break;
-            }
+            Debug.Log(GameObject.Find("Cards").transform.childCount);
             if (cardsLeft == 2)
             {
                 //종료시키자!!
-                BgmManger.instance.audioSource.Stop();
-                BgmManger.instance.PlayBGMSound(BgmManger.instance.audio_GameClear[0]);
                 Time.timeScale = 0f;
                 endText.SetActive(true);
+                Invoke("GameEnd", 1f);
             }
-            
         }
-        //틀렸을 때 
         else
         {
-            Invoke("FailCard", 0.7f);
+            firstCard.GetComponent<card>().CloseCard();
+            secondCard.GetComponent<card>().CloseCard();
         }
-        matchCount++;
-    }
 
-    void FailCard()
-    {
-        EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Teemo);
-        ShowNameText("실패");
-        firstCard.GetComponent<card>().CloseCard();
-        secondCard.GetComponent<card>().CloseCard();
-        Invoke("stopDoubleClick", 1f);
-        //time -= 1f;
-        score = score == 0 ? 0 : score - 1;
-        combo = 0;
-        txtAnim.SetBool("fail", true);
-        camera.VibrateForTime(VibrateForTime);
-        Invoke("TxtAnimRelese", 1f);
-    }
-
-    void TxtAnimRelese()
-    {
-        txtAnim.SetBool("fail", false);
-    }
-
-    void stopDoubleClick()
-    {
-        tryChance = true;
         firstCard = null;
         secondCard = null;
     }
 
-    void ShowNameText(string name)
-    {
-        NameText.text = name;
-        NameText.gameObject.SetActive(true);
-        Invoke("HideNameText", 1f);
-    }
-
-    void HideNameText()
-    {
-        NameText.gameObject.SetActive(false);
-    }
-
     void GameEnd()
     {
-        BgmManger.instance.audioSource.Stop();
-        EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
-        time = 0;
-        isGameOver = true;
-        camera.endGame();
+        //종료시키자!!
         Time.timeScale = 0f;
         endText.SetActive(true);
-        score += (int)time;
-        SaveScore();
-        LoadScore();
     }
 
     public void RetryGame()
     {
         SceneManager.LoadScene("MainScene");
     }
-
-    public void GenerateCard()
-    {
-        int[] cards = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
-        cards = cards.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
-
-        cardsLeft = cards.Length;
-
-        for (int i = 0; i < 20; i++)
-        {
-            //게임 오브젝트 (각각의 요소)
-            GameObject newCard = Instantiate(card);
-            newCard.transform.parent = GameObject.Find("Cards").transform;
-            //이재헌님 코드 
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.7f;
-            newCard.transform.position = new Vector3(0f, 0f, 0f);
-
-            //게임 오브젝트가 이동해야 할 좌표
-            Vector3 target = new Vector3(x, y, 0);
-
-            string rtanName = "card" + cards[i].ToString();
-            newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(rtanName);
-
-            //배열에 저장하기 (오브젝트, 오브젝트가 이동할 좌표)
-            cardList.Add(newCard, target);
-        }
-    }
-
-    IEnumerator GenerateCardMoveToTarget(float waitSeconds)
-    {
-        foreach (KeyValuePair<GameObject, Vector3> card in cardList)
-        {
-            GameObject cardGameObject = card.Key;
-            Vector3 cardVector3 = card.Value;
-            cardGameObject.transform.position = Vector3.Lerp(cardGameObject.transform.position, cardVector3, 0.1f);
-            yield return new WaitForSeconds(waitSeconds);
-        }
-        isCardGenerated = true;
-    }
-
-    public void SaveScore()
-    {
-        PlayerPrefs.SetInt("CurrentScore", score);
-        int tmpScore = 0;
-        for (int i = 0; i < 3; i++)
-        {
-            bestScore[i] = PlayerPrefs.GetInt(i + "BestScore");
-            while (bestScore[i] < score)
-            {
-                tmpScore = bestScore[i];
-                bestScore[i] = score;
-
-                PlayerPrefs.SetInt(i + "BestScore", score);
-
-                score = tmpScore;
-            }
-
-            PlayerPrefs.SetInt(i + "BestScore", bestScore[i]);
-        }
-    }
-    public void LoadScore()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            scoreData[i].text = PlayerPrefs.GetInt(i + "BestScore").ToString();
-        }
-    }
-
 }
-
