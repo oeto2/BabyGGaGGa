@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using System;
+using Unity.VisualScripting;
 
 
 
@@ -8,6 +10,7 @@ public class FontManager : MonoBehaviour
 {
     //싱글톤 패턴
     public static FontManager instance = null;
+    public Dropdown dropdown;
 
     //폰트 string 배열로 추가 하기 텍스트를 계속 추가하면 됨
     public string[] Fonts = {
@@ -22,6 +25,13 @@ public class FontManager : MonoBehaviour
         "Assets/Fonts/Sejong hospital Bold.ttf", //8.세종호텔 볼드
         "Assets/Fonts/Sejong hospital Light.ttf" //9.세종호텔 라이트
     };
+    
+    void Start()
+    {
+        ChangeAllFonts(0);
+    }
+
+    
     public void Awake()
     {
         //싱글톤
@@ -39,7 +49,7 @@ public class FontManager : MonoBehaviour
         }
     }
 
-    
+
     //모든 폰트 바꾸기
     public void ChangeAllFonts(int num)
     {
@@ -47,7 +57,9 @@ public class FontManager : MonoBehaviour
 
         foreach (Text t in allTextObjects)
         {
-            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]); 
+            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
         }
+
     }
+
 }

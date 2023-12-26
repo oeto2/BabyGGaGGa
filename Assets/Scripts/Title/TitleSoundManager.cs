@@ -53,4 +53,10 @@ public class TitleSoundManager : MonoBehaviour
             audioSource.PlayOneShot(_clip);
         }
     }
+
+    public void SeteffectValume(float volume)
+    {
+        audioSource.volume = volume;
+        InfoManager.instance.effectValume = volume;
+    }
 }

@@ -17,4 +17,10 @@ public class TitleBgmManager : MonoBehaviour
         audioSource.clip = clip_Title[0];
         audioSource.Play();
     }
+
+    public void SetbgmVolume(float volume)
+    {
+        audioSource.volume = volume;
+        InfoManager.instance.bgmValume = volume;
+    }
 }
