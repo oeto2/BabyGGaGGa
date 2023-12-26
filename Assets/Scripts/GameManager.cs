@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
                 EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Defeat);
                 GameEnd();
             }
-
+            int cardsLeft = GameObject.Find("Cards").transform.childCount;
             //½Â¸®
             if (cardsLeft == 0)
             {
@@ -185,7 +185,6 @@ public class GameManager : MonoBehaviour
             }
 
 
-            int cardsLeft = GameObject.Find("Cards").transform.childCount;
             SoundManager.instance.PlayEffectSound(SoundManager.instance.audio_Match);
 
             Invoke("stopDoubleClick", 0.3f);
