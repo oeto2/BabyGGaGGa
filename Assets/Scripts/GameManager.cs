@@ -146,6 +146,10 @@ public class GameManager : MonoBehaviour
         else
         {
             score -= 1;
+            if(score < 0)
+            {
+                score = 0;
+            }
             combo = 0;
             firstCard.GetComponent<card>().CloseCard();
             secondCard.GetComponent<card>().CloseCard();
