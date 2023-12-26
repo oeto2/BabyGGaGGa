@@ -77,7 +77,15 @@ public class GameManager : MonoBehaviour
         FontManager.instance.ChangeAllFonts(Random.Range(0, 10));
 
         //카드 생성
-        GenerateCard();
+        if (InfoManager.instance.int_level == 0)
+        {
+            GenerateCard1();
+        }
+        else
+        {
+            GenerateCard();
+        }
+        
         Time.timeScale = 1f;
         isCardGenerated = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<cameraShake>();
@@ -92,6 +100,7 @@ public class GameManager : MonoBehaviour
         //카드 배치
         if (isCardGenerated == false)
         {
+            
             StartCoroutine(GenerateCardMoveToTarget(0.03f));
         }
         else
@@ -160,7 +169,6 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-
                 Invoke("ComboShow", 0.5f);
                 score += scorePower * comboPower * combo;
             }
@@ -290,6 +298,34 @@ public class GameManager : MonoBehaviour
         cardsLeft = cards.Length;
 
         for (int i = 0; i < 20; i++)
+        {
+            //게임 오브젝트 (각각의 요소)
+            GameObject newCard = Instantiate(card);
+            newCard.transform.parent = GameObject.Find("Cards").transform;
+            //이재헌님 코드 
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.7f;
+            newCard.transform.position = new Vector3(0f, 0f, 0f);
+
+            //게임 오브젝트가 이동해야 할 좌표
+            Vector3 target = new Vector3(x, y, 0);
+
+            string rtanName = "card" + cards[i].ToString();
+            newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(rtanName);
+
+            //배열에 저장하기 (오브젝트, 오브젝트가 이동할 좌표)
+            cardList.Add(newCard, target);
+        }
+    }
+
+    public void GenerateCard1()
+    {
+        int[] cards = { 0, 0, 1, 1, 2, 2, 3, 3, 5, 5, 6, 6, 7, 7, 9, 9 };
+        cards = cards.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
+
+        cardsLeft = cards.Length;
+
+        for (int i = 0; i < 16; i++)
         {
             //게임 오브젝트 (각각의 요소)
             GameObject newCard = Instantiate(card);
