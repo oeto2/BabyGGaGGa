@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public int score;
     public Text scoreText;
     public int combo;
-    public bool isEnd;
     public Text[] scoreData;
     private int[] bestScore;
     private bool isCardGenerated;	// 카드가 분배 되었는지 확인하기 위한 bool값
@@ -51,7 +50,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cardOpen =true ;
-        isEnd = true;
         Time.timeScale = 1.0f;
         isCardGenerated = false;
 
@@ -98,11 +96,6 @@ public class GameManager : MonoBehaviour
         time -= Time.deltaTime;
         timeText.text = time.ToString("N0");
         scoreText.text = score.ToString();
-        int cardsLeft = GameObject.Find("Cards").transform.childCount;
-        if (cardsLeft == 0)
-        {
-            GameEnd();
-        }
         if (isCardGenerated == false)
         {
             StartCoroutine(GenerateCardMoveToTarget(0.03f));
@@ -129,10 +122,9 @@ public class GameManager : MonoBehaviour
         {
             combo += 1;
             audioSource.PlayOneShot(match);
-
             firstCard.GetComponent<card>().DestroyCard();
             secondCard.GetComponent<card>().DestroyCard();
-            if(combo == 1)
+            if (combo == 1)
             {
                 score += 10;
             }
@@ -143,6 +135,11 @@ public class GameManager : MonoBehaviour
             else
             {
                 score += 30;
+            }
+            int cardsLeft = GameObject.Find("Cards").transform.childCount;
+            if (cardsLeft == 2)
+            {
+                Invoke("GameEnd",1.0f);
             }
 
         }
@@ -162,16 +159,12 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
-        if(isEnd)
-        {
-            //종료시키자!!
-            Time.timeScale = 0f;
-            endText.SetActive(true);
-            score += (int)time;
-            isEnd = false;
-            SaveScore();
-            LoadScore();
-        }
+        //종료시키자!!
+        Time.timeScale = 0f;
+        endText.SetActive(true);
+        score += (int)time;
+        SaveScore();
+        LoadScore();
     }
 
     public void RetryGame()
