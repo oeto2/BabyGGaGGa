@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject StartText;
     public GameObject endText;
 
+    public Text ComboEffect;
+
     public Text[] endTitleArrText;   // 게임 종료시 타이틀
 
     public GameObject card;
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     float time = 60.0f + (InfoManager.instance.timeUpLevel * 2);
     float item;
 
-    int scorePower = 10 + (InfoManager.instance.scoreUpLevel - 2);
+    int scorePower = 10 + (InfoManager.instance.scoreUpLevel - 1);
     int comboPower = 1 + InfoManager.instance.comboUpLevel;
 
     public GameObject firstCard;
@@ -158,6 +160,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+
+                Invoke("ComboShow", 0.5f);
                 score += scorePower * comboPower * combo;
             }
 
@@ -198,6 +202,19 @@ public class GameManager : MonoBehaviour
         }
         matchCount++;
     }
+
+    void ComboShow()
+    {
+        ComboEffect.gameObject.SetActive(true);
+        ComboEffect.text = "Combo" + (combo - 1);
+
+        Invoke("ComboHide", 1f);
+    }
+    void ComboHide()
+    {
+        ComboEffect.gameObject.SetActive(false);
+    }
+
 
     void FailCard()
     {
