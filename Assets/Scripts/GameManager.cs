@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
             {
                 score += 30;
             }
-            int cardsLeft = GameObject.Find("Cards").transform.childCount;
+            cardsLeft = GameObject.Find("Cards").transform.childCount;
             if (cardsLeft == 2)
             {
                 Invoke("GameEnd",1.0f);
