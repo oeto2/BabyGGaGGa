@@ -1776,6 +1776,7 @@ MonoBehaviour:
   audioSource: {fileID: 905022372}
   audio_Teemo: {fileID: 8300000, guid: 926439eead803ea46b34718943e0d538, type: 3}
   audio_Defeat: {fileID: 8300000, guid: d1222905c23d13f43ae428c0a58e4d81, type: 3}
+  audio_Combo: {fileID: 8300000, guid: 4c583a4ed0bddb84b8a96fe4bd72e146, type: 3}
   infoManagerScr: {fileID: 0}
 --- !u!1 &919462321
 GameObject:

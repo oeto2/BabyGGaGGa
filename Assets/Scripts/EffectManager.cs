@@ -15,6 +15,9 @@ public class EffectManager : MonoBehaviour
     //롤 패배 소리
     public AudioClip audio_Defeat;
 
+    //콤보 소리
+    public AudioClip audio_Combo;
+
     //인포매니저 스크립트
     public InfoManager infoManagerScr;
 
