@@ -23,9 +23,12 @@ public class InfoManager : MonoBehaviour
 
     //현재 소지 골드
     public int int_CurGold = 0;
-    
-    //UpGrade Levels
-    
+
+    //UpGrade Level
+    public int timeUpLevel = 1;
+    public int scoreUpLevel = 1;
+    public int comboUpLevel = 1;
+
 
     private void Awake()
     {
