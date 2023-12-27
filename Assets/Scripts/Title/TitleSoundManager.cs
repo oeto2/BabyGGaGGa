@@ -60,13 +60,13 @@ public class TitleSoundManager : MonoBehaviour
         InfoManager.instance.effectValume = volume;
         if (audioSource.volume == 0f)
         {
-            GameObject.Find("Canvas/optionPage/effectSliderImgOn").gameObject.SetActive(false);
-            GameObject.Find("Canvas/optionPage/effectSliderImgOff").gameObject.SetActive(true);
+            GameObject.Find("Canvas/optionCanvas/effect/ImageOn").gameObject.SetActive(false);
+            GameObject.Find("Canvas/optionCanvas/effect/ImageOff").gameObject.SetActive(true);
         }
         else
         {
-            GameObject.Find("Canvas/optionPage/effectSliderImgOn").gameObject.SetActive(true);
-            GameObject.Find("Canvas/optionPage/effectSliderImgOff").gameObject.SetActive(false);
+            GameObject.Find("Canvas/optionCanvas/effect/ImageOn").gameObject.SetActive(true);
+            GameObject.Find("Canvas/optionCanvas/effect/ImageOff").gameObject.SetActive(false);
         }
     }
 }

@@ -58,7 +58,7 @@ public class FontManager : MonoBehaviour
         {
             for (int i = 0; i < TextBox.Length; i++)
             {
-                if (t != GameObject.Find("Canvas/optionPage/Dropdown/Dropdown List/Viewport/Content").GetComponentsInChildren<Text>()[i])
+                if (t != GameObject.Find("Canvas/optionCanvas/Dropdown/Dropdown List/Viewport/Content").GetComponentsInChildren<Text>()[i])
                 {
                     t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
                 }
@@ -69,7 +69,7 @@ public class FontManager : MonoBehaviour
 
     public void dropdownFontChange()
     {
-        items = GameObject.Find("Canvas/optionPage/Dropdown/Dropdown List/Viewport/Content");
+        items = GameObject.Find("Canvas/optionCanvas/Dropdown/Dropdown List/Viewport/Content");
         TextBox = items.GetComponentsInChildren<Text>();
         for (int i = 0; i < TextBox.Length; i++)
         {

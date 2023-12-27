@@ -23,13 +23,13 @@ public class TitleBgmManager : MonoBehaviour
         InfoManager.instance.bgmValume = volume;
         if (audioSource.volume == 0f)
         {
-            GameObject.Find("Canvas/optionPage/bgmSliderImgOn").gameObject.SetActive(false);
-            GameObject.Find("Canvas/optionPage/bgmSliderImgOff").gameObject.SetActive(true);
+            GameObject.Find("Canvas/optionCanvas/bgm/ImageOn").gameObject.SetActive(false);
+            GameObject.Find("Canvas/optionCanvas/bgm/ImageOff").gameObject.SetActive(true);
         }
         else
         {
-            GameObject.Find("Canvas/optionPage/bgmSliderImgOn").gameObject.SetActive(true);
-            GameObject.Find("Canvas/optionPage/bgmSliderImgOff").gameObject.SetActive(false);
+            GameObject.Find("Canvas/optionCanvas/bgm/ImageOn").gameObject.SetActive(true);
+            GameObject.Find("Canvas/optionCanvas/bgm/ImageOff").gameObject.SetActive(false);
         }
     }
 

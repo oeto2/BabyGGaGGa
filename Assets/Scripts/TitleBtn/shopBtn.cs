@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class optionBtn : MonoBehaviour
+public class shopBtn : MonoBehaviour
 {
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +16,10 @@ public class optionBtn : MonoBehaviour
         
     }
 
-    public void OpenOptPage()
+    public void OpenShop()
     {
-        transform.parent.Find("optionCanvas").gameObject.SetActive(true);
+        ShopManager.instance.ShowShop();
     }
 
-    public void ExitOptPage()
-    {
-        transform.parent.gameObject.SetActive(false);
-    }
+
 }

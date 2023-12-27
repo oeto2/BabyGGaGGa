@@ -155,4 +155,5 @@ public class ShopManager : MonoBehaviour
     {
         text_CurGold.text = InfoManager.instance.int_CurGold.ToString();
     }
+
 }
