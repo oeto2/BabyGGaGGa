@@ -30,27 +30,18 @@ public class wikiBtn : MonoBehaviour
         }
     }
 
-    void unlockBook()
+    public void unlockBook()
     {
-        InfoManager.instance.unlockInfo[0] = true;
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    if (InfoManager.instance.unlockInfo[i])
-        //    {
-        //        book = "book" + i.ToString();
-        //        anim = transform.parent.Find("wikiCanvas/wikibackground/" + book + "/unlocked").GetComponent<Animator>();
-        //        anim.SetBool("isOpen", true);
-        //
-        //        Invoke("Filp", 0.5f);
-        //    }
-        //}
+        for (int i = 0; i < 10; i++)
+        {
+            if (InfoManager.instance.unlockInfo[i])
+            {
+                book = "Image" + i.ToString() + "1";
+                transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).gameObject.SetActive(false);
+            }
+        }
     }
 
-    void Flip()
-    {
-        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image").gameObject.SetActive(true);
-        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("unlocked").gameObject.SetActive(false);
-    }
 
     public void ShowwikiImage()
     {
