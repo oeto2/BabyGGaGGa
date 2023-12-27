@@ -35,10 +35,10 @@ public class wikiBtn : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            if (InfoManager.instance.unlockInfo[i] && !InfoManager.instance.isunlockInfo[i])
+            if (InfoManager.instance.unlockInfo[i])
             {
-                anim[i].SetBool("isUnlock", true);
-                InfoManager.instance.isunlockInfo[i] = true;
+                //anim[i].SetBool("isUnlock", true);
+                //InfoManager.instance.isunlockInfo[i] = true;
                 book = "Image" + i.ToString();
                 InvokeunlockBook(book+"1");
                 //Invoke("InvokeunlockBook(" + book + "1)", 0.25f);
