@@ -27,13 +27,12 @@ public class wikiBtn : MonoBehaviour
         {
             InfoManager.instance.isPageOpen = true;
             transform.parent.Find("wikiCanvas").gameObject.SetActive(true);
-            Invoke("unlockBook", 1f);
+            unlockBook();
         }
     }
 
     public void unlockBook()
     {
-        
         for (int i = 0; i < 10; i++)
         {
             if (InfoManager.instance.unlockInfo[i] && !InfoManager.instance.isunlockInfo[i])
@@ -41,7 +40,8 @@ public class wikiBtn : MonoBehaviour
                 anim[i].SetBool("isUnlock", true);
                 InfoManager.instance.isunlockInfo[i] = true;
                 book = "Image" + i.ToString();
-                Invoke("InvokeunlockBook(" + book + "1)", 0.25f);
+                InvokeunlockBook(book+"1");
+                //Invoke("InvokeunlockBook(" + book + "1)", 0.25f);
             }
         }
     }

@@ -25,5 +25,6 @@ public class EndText : MonoBehaviour
     public void title()
     {
         SceneManager.LoadScene("StartScene");
+        InfoManager.instance.int_level = 0;
     }
 }
