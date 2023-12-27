@@ -47,7 +47,7 @@ public class wikiBtn : MonoBehaviour
 
     void InvokeunlockBook()
     {
-        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image01").gameObject.SetActive(false);
+        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book + "1").gameObject.SetActive(false);
     }
 
 
