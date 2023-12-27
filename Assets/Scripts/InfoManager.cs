@@ -24,6 +24,8 @@ public class InfoManager : MonoBehaviour
     //현재 소지 골드
     public int int_CurGold = 0;
 
+    public bool isPageOpen = false;
+
     //현재 선택된 폰트
     public int int_CurFontNum = 0;
 

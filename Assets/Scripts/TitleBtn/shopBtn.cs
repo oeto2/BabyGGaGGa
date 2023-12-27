@@ -18,7 +18,11 @@ public class shopBtn : MonoBehaviour
 
     public void OpenShop()
     {
-        ShopManager.instance.ShowShop();
+        if (!InfoManager.instance.isPageOpen)
+        {
+            ShopManager.instance.ShowShop();
+            InfoManager.instance.isPageOpen = true;
+        }
     }
 
 
