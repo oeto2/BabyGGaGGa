@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //현재는 랜덤으로 폰트가 바뀌게 설정
-        FontManager.instance.ChangeAllFonts(Random.Range(0, 10));
+        //FontManager.instance.ChangeAllFonts(Random.Range(0, 10));
 
         //카드 생성
         if (InfoManager.instance.int_level == 0)
