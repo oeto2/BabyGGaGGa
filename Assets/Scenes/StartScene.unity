@@ -250,6 +250,7 @@ MonoBehaviour:
   effectValume: 1
   int_level: 0
   unlockInfo: 00000000000000000000
+  isunlockInfo: 00000000000000000000
   int_CurGold: 100
   isPageOpen: 0
   int_CurFontNum: 0
@@ -1626,7 +1627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &327523584
 MonoBehaviour:
   m_ObjectHideFlags: 0
