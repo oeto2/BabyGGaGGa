@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class wikiBtn : MonoBehaviour
 {
-    public Animator anim;
+    public Animator[] anim;
 
     string book;
     // Start is called before the first frame update
@@ -33,11 +33,12 @@ public class wikiBtn : MonoBehaviour
 
     public void unlockBook()
     {
+        
         for (int i = 0; i < 10; i++)
         {
             if (InfoManager.instance.unlockInfo[i])
             {
-                anim.SetBool("isUnlock", true);
+                anim[i].SetBool("isUnlock", true);
                 book = "Image" + i.ToString();
                 Invoke("InvokeunlockBook", 0.25f);
             }
