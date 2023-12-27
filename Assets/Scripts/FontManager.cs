@@ -4,6 +4,8 @@ using UnityEditor;
 using System.Collections.Generic;
 using System;
 using static UnityEditor.Progress;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 
 
@@ -28,7 +30,15 @@ public class FontManager : MonoBehaviour
         "Assets/Fonts/Sejong hospital Light.ttf" //9.세종호텔 라이트
     };
 
-
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SetAllFonts(InfoManager.instance.int_CurFontNum);
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetAllFonts(InfoManager.instance.int_CurFontNum);
+    }
 
     public void Awake()
     {
