@@ -144,9 +144,11 @@ public class GameManager : MonoBehaviour
             if (checkTime >= 3)
             {
                 firstCard.GetComponent<card>().CloseCard();
+                firstCard = null;
                 if (secondCard != null)
                 {
                     secondCard.GetComponent<card>().CloseCard();
+                    secondCard = null;
                 }
                 matchCount++;
             }
