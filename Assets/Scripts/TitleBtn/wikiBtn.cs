@@ -33,16 +33,20 @@ public class wikiBtn : MonoBehaviour
 
     public void unlockBook()
     {
-        InfoManager.instance.unlockInfo[0] = true;
         for (int i = 0; i < 10; i++)
         {
             if (InfoManager.instance.unlockInfo[i])
             {
                 anim.SetBool("isUnlock", true);
                 book = "Image" + i.ToString();
-                transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image01").gameObject.SetActive(false);
+                Invoke("InvokeunlockBook", 0.25f);
             }
         }
+    }
+
+    void InvokeunlockBook()
+    {
+        transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).Find("Image01").gameObject.SetActive(false);
     }
 
 
