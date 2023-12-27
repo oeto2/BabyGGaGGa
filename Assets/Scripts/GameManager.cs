@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //현재는 랜덤으로 폰트가 바뀌게 설정
-        FontManager.instance.ChangeAllFonts(Random.Range(0, 10));
+        //FontManager.instance.ChangeAllFonts(Random.Range(0, 10));
 
         //카드 생성
         if (InfoManager.instance.int_level == 0)
@@ -143,7 +143,8 @@ public class GameManager : MonoBehaviour
             checkTime += Time.deltaTime;
             if (checkTime >= 3)
             {
-                Invoke("FailCard", 0.7f);
+                firstCard.GetComponent<card>().CloseCard();
+                secondCard = null;
                 matchCount++;
             }
         }

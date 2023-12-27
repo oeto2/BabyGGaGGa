@@ -13,6 +13,15 @@ public class LoadingSceneManager : MonoBehaviour
     [SerializeField]
     Image progressBar;
 
+    public Text tooltip;
+
+    string[] tooltips = {
+    "연속으로 맞출 시 콤보 시스템이 작동합니다.",
+    "카드 매칭이 틀리면 점수가 감소합니다.",
+    "게임을하여 골드를 획득 할 수 있습니다.",
+    "상점에서 능력치를 강화할 수 있습니다."
+    };
+
     public static void LoadSceme(string sceneName)
     {
         nextScene = sceneName;
@@ -23,6 +32,7 @@ public class LoadingSceneManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(LoadSeceneProcess());
+        tooltip.text = tooltips[Random.Range(0, 4)];
     }
 
     // Update is called once per frame
@@ -47,6 +57,7 @@ public class LoadingSceneManager : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (progressBar.fillAmount >= 1f)
                 {
+                    tooltip.gameObject.SetActive(false);
                     completeText.SetActive(true);
                 }
                 if(progressBar.fillAmount >= 1f && Input.GetMouseButtonDown(0))
