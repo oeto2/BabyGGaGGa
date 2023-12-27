@@ -22,24 +22,28 @@ public class wikiBtn : MonoBehaviour
 
     public void OpenwikiPage()
     {
-        transform.parent.Find("wikiCanvas").gameObject.SetActive(true);
-        Invoke("unlockBook", 1f);
+        if (!InfoManager.instance.isPageOpen)
+        {
+            InfoManager.instance.isPageOpen = true;
+            transform.parent.Find("wikiCanvas").gameObject.SetActive(true);
+            Invoke("unlockBook", 1f);
+        }
     }
 
     void unlockBook()
     {
         InfoManager.instance.unlockInfo[0] = true;
-        for (int i = 0; i < 10; i++)
-        {
-            if (InfoManager.instance.unlockInfo[i])
-            {
-                book = "book" + i.ToString();
-                anim = transform.parent.Find("wikiCanvas/wikibackground/" + book + "/unlocked").GetComponent<Animator>();
-                anim.SetBool("isOpen", true);
-
-                Invoke("Filp", 0.5f);
-            }
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    if (InfoManager.instance.unlockInfo[i])
+        //    {
+        //        book = "book" + i.ToString();
+        //        anim = transform.parent.Find("wikiCanvas/wikibackground/" + book + "/unlocked").GetComponent<Animator>();
+        //        anim.SetBool("isOpen", true);
+        //
+        //        Invoke("Filp", 0.5f);
+        //    }
+        //}
     }
 
     void Flip()
@@ -79,16 +83,16 @@ public class wikiBtn : MonoBehaviour
 
     void wikiTextShow(int memNum)
     {
-        transform.parent.parent.Find("Descipt").gameObject.SetActive(true);
-        Text[] allText = transform.parent.parent.Find("Descipt").Find("Canvas").GetComponentsInChildren<Text>();
+        transform.parent.Find("Descipt").gameObject.SetActive(true);
+        Text[] allText = transform.parent.Find("Descipt").Find("Canvas").GetComponentsInChildren<Text>();
         foreach(Text t in allText) 
         {
             t.gameObject.SetActive(false);
         }
         string txt = "Text" + memNum.ToString();
         string img = this.gameObject.GetComponent<Image>().sprite.name;
-        transform.parent.parent.Find("Descipt").Find("Canvas").Find(txt).gameObject.SetActive(true);
-        transform.parent.parent.Find("Descipt").Find("wikiImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(img);
+        transform.parent.Find("Descipt").Find("Canvas").Find(txt).gameObject.SetActive(true);
+        transform.parent.Find("Descipt").Find("wikiImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(img);
     }
 
     public void ExitwikiDesciption()
@@ -99,6 +103,9 @@ public class wikiBtn : MonoBehaviour
     public void ExitwikiPage()
     {
         if(!transform.parent.Find("wikibackground").Find("Descipt").gameObject.activeSelf)
+        {
+            InfoManager.instance.isPageOpen = false;
             transform.parent.gameObject.SetActive(false);
+        }
     }
 }

@@ -19,11 +19,16 @@ public class optionBtn : MonoBehaviour
 
     public void OpenOptPage()
     {
-        transform.parent.Find("optionCanvas").gameObject.SetActive(true);
+        if (!InfoManager.instance.isPageOpen)
+        {
+            InfoManager.instance.isPageOpen = true;
+            transform.parent.Find("optionCanvas").gameObject.SetActive(true);
+        }
     }
 
     public void ExitOptPage()
     {
         transform.parent.gameObject.SetActive(false);
+        InfoManager.instance.isPageOpen = false;
     }
 }

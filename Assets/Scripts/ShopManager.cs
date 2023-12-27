@@ -67,6 +67,7 @@ public class ShopManager : MonoBehaviour
     public void CloseShop()
     {
         obj_ShopUi.SetActive(false);
+        InfoManager.instance.isPageOpen = false;
     }
 
     //Upgrade Time
