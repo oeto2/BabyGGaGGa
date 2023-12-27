@@ -47,7 +47,18 @@ public class FontManager : MonoBehaviour
 
         foreach (Text t in allTextObjects)
         {
+<<<<<<< Updated upstream
             t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]); 
+=======
+            for (int i = 0; i > TextBox.Length; i++)
+            {
+                if (t != GameObject.Find("Canvas/optionPage/Dropdown/Dropdown List/Viewport/Content").GetComponentsInChildren<Text>()[i])
+                {
+                    t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
+                }
+            }
+
+>>>>>>> Stashed changes
         }
     }
 }
