@@ -24,6 +24,9 @@ public class InfoManager : MonoBehaviour
     //현재 소지 골드
     public int int_CurGold = 0;
 
+    //현재 선택된 폰트
+    public int int_CurFontNum = 0;
+
     //UpGrade Level
     public int timeUpLevel = 1;
     public int scoreUpLevel = 1;
