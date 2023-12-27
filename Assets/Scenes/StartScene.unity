@@ -479,63 +479,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84750419}
   m_CullTransparentMesh: 1
---- !u!1 &90838380
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 90838382}
-  - component: {fileID: 90838381}
-  m_Layer: 0
-  m_Name: FontManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &90838381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90838380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9caf247e7ba9bdb4bb663b3c0f4a86f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: {fileID: 0}
-  TextBox: []
-  Fonts:
-  - Assets/Fonts/Ansungtangmyun-ESG.ttf
-  - Assets/Fonts/BMHANNA_11yrs_ttf.ttf
-  - Assets/Fonts/ChosunCentennial_ttf.ttf
-  - Assets/Fonts/ChosunSm.TTF
-  - Assets/Fonts/CookieRun Black.ttf
-  - Assets/Fonts/CookieRun Bold.ttf
-  - Assets/Fonts/CookieRun Regular.ttf
-  - Assets/Fonts/Dovemayo_gothic.ttf
-  - Assets/Fonts/Sejong hospital Bold.ttf
-  - Assets/Fonts/Sejong hospital Light.ttf
---- !u!4 &90838382
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90838380}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 380, y: 640, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112476442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2460,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486936129}
   m_CullTransparentMesh: 1
+--- !u!1 &491833603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491833605}
+  - component: {fileID: 491833604}
+  m_Layer: 0
+  m_Name: FontManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &491833604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491833603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9caf247e7ba9bdb4bb663b3c0f4a86f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: {fileID: 0}
+  TextBox: []
+  Fonts:
+  - Assets/Fonts/Ansungtangmyun-ESG.ttf
+  - Assets/Fonts/BMHANNA_11yrs_ttf.ttf
+  - Assets/Fonts/ChosunCentennial_ttf.ttf
+  - Assets/Fonts/ChosunSm.TTF
+  - Assets/Fonts/CookieRun Black.ttf
+  - Assets/Fonts/CookieRun Bold.ttf
+  - Assets/Fonts/CookieRun Regular.ttf
+  - Assets/Fonts/Dovemayo_gothic.ttf
+  - Assets/Fonts/Sejong hospital Bold.ttf
+  - Assets/Fonts/Sejong hospital Light.ttf
+--- !u!4 &491833605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491833603}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 380, y: 640, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510285707
 GameObject:
   m_ObjectHideFlags: 0
@@ -9341,7 +9341,6 @@ GameObject:
   - component: {fileID: 2119162087}
   - component: {fileID: 2119162086}
   - component: {fileID: 2119162085}
-  - component: {fileID: 2119162089}
   - component: {fileID: 2119162088}
   m_Layer: 5
   m_Name: Dropdown
@@ -9444,7 +9443,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2119162089}
+      - m_Target: {fileID: 491833604}
         m_TargetAssemblyTypeName: FontManager, Assembly-CSharp
         m_MethodName: ChangeAllFonts
         m_Mode: 0
@@ -9512,7 +9511,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2119162089}
+        - m_Target: {fileID: 491833604}
           m_TargetAssemblyTypeName: FontManager, Assembly-CSharp
           m_MethodName: dropdownFontChange
           m_Mode: 1
@@ -9524,31 +9523,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &2119162089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119162083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9caf247e7ba9bdb4bb663b3c0f4a86f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: {fileID: 0}
-  TextBox: []
-  Fonts:
-  - Assets/Fonts/Ansungtangmyun-ESG.ttf
-  - Assets/Fonts/BMHANNA_11yrs_ttf.ttf
-  - Assets/Fonts/ChosunCentennial_ttf.ttf
-  - Assets/Fonts/ChosunSm.TTF
-  - Assets/Fonts/CookieRun Black.ttf
-  - Assets/Fonts/CookieRun Bold.ttf
-  - Assets/Fonts/CookieRun Regular.ttf
-  - Assets/Fonts/Dovemayo_gothic.ttf
-  - Assets/Fonts/Sejong hospital Bold.ttf
-  - Assets/Fonts/Sejong hospital Light.ttf
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9560,4 +9534,4 @@ SceneRoots:
   - {fileID: 1554033075}
   - {fileID: 450188647}
   - {fileID: 1613508253}
-  - {fileID: 90838382}
+  - {fileID: 491833605}

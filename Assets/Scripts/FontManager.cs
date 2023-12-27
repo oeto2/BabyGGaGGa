@@ -68,6 +68,16 @@ public class FontManager : MonoBehaviour
         InfoManager.instance.int_CurFontNum = num;
     }
 
+    public void SetAllFonts(int num)
+    {
+        var allTextObjects = Resources.FindObjectsOfTypeAll(typeof(Text));
+
+        foreach (Text t in allTextObjects)
+        {
+            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
+        }
+    }
+
     public void dropdownFontChange()
     {
         items = GameObject.Find("Canvas/optionCanvas/Dropdown/Dropdown List/Viewport/Content");
