@@ -22,6 +22,7 @@ public class wikiBtn : MonoBehaviour
 
     public void OpenwikiPage()
     {
+
         if (!InfoManager.instance.isPageOpen)
         {
             InfoManager.instance.isPageOpen = true;
@@ -32,10 +33,12 @@ public class wikiBtn : MonoBehaviour
 
     public void unlockBook()
     {
+        InfoManager.instance.unlockInfo[0] = true;
         for (int i = 0; i < 10; i++)
         {
             if (InfoManager.instance.unlockInfo[i])
             {
+                anim.SetBool("isUnlock", true);
                 book = "Image" + i.ToString() + "1";
                 transform.parent.Find("wikiCanvas").Find("wikibackground").Find(book).gameObject.SetActive(false);
             }
