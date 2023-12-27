@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //현재는 랜덤으로 폰트가 바뀌게 설정
-        FontManager.instance.SetAllFonts(InfoManager.instance.int_CurFontNum);
+        FontManager.instance.ChangeAllFonts(InfoManager.instance.int_CurFontNum);
 
         //카드 생성
         if (InfoManager.instance.int_level == 0)
@@ -144,7 +144,10 @@ public class GameManager : MonoBehaviour
             if (checkTime >= 3)
             {
                 firstCard.GetComponent<card>().CloseCard();
-                secondCard = null;
+                if (secondCard != null)
+                {
+                    secondCard.GetComponent<card>().CloseCard();
+                }
                 matchCount++;
             }
         }
@@ -232,8 +235,14 @@ public class GameManager : MonoBehaviour
     {
         EffectManager.instance.PlayEffectSound(EffectManager.instance.audio_Teemo);
         ShowNameText("실패");
-        firstCard.GetComponent<card>().CloseCard();
-        secondCard.GetComponent<card>().CloseCard();
+        if(firstCard != null)
+        {
+            firstCard.GetComponent<card>().CloseCard();
+        }
+        if (secondCard != null)
+        {
+            secondCard.GetComponent<card>().CloseCard();
+        }
         Invoke("stopDoubleClick", 0.3f);
         //time -= 1f;
         score = score == 0 ? 0 : score - 1;
