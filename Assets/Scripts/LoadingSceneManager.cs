@@ -31,7 +31,7 @@ public class LoadingSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FontManager.instance.ChangeAllFonts(InfoManager.instance.int_CurFontNum);
+        FontManager.instance.SetAllFonts(InfoManager.instance.int_CurFontNum);
         StartCoroutine(LoadSeceneProcess());
         tooltip.text = tooltips[Random.Range(0, 4)];
     }
