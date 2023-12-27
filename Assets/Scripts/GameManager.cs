@@ -143,7 +143,8 @@ public class GameManager : MonoBehaviour
             checkTime += Time.deltaTime;
             if (checkTime >= 3)
             {
-                Invoke("FailCard", 0.7f);
+                firstCard.GetComponent<card>().DestroyCard();
+                secondCard = null;
                 matchCount++;
             }
         }
