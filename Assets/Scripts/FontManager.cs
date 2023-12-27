@@ -65,6 +65,7 @@ public class FontManager : MonoBehaviour
             }
 
         }
+        InfoManager.instance.int_CurFontNum = num;
     }
 
     public void dropdownFontChange()
