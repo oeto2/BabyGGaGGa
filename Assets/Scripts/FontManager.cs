@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.Collections.Generic;
 using System;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
@@ -70,7 +70,7 @@ public class FontManager : MonoBehaviour
             {
                 if (t != GameObject.Find("Canvas/optionCanvas/Dropdown/Dropdown List/Viewport/Content").GetComponentsInChildren<Text>()[i])
                 {
-                    t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
+                    //t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
                 }
             }
 
@@ -80,12 +80,12 @@ public class FontManager : MonoBehaviour
 
     public void SetAllFonts(int num)
     {
-        var allTextObjects = Resources.FindObjectsOfTypeAll(typeof(Text));
+        //var allTextObjects = Resources.FindObjectsOfTypeAll(typeof(Text));
 
-        foreach (Text t in allTextObjects)
-        {
-            t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
-        }
+        //foreach (Text t in allTextObjects)
+        //{
+        //    t.font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[num]);
+        //}
     }
 
     public void dropdownFontChange()
@@ -94,7 +94,7 @@ public class FontManager : MonoBehaviour
         TextBox = items.GetComponentsInChildren<Text>();
         for (int i = 0; i < TextBox.Length; i++)
         {
-            TextBox[i].font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[i]);
+            //TextBox[i].font = AssetDatabase.LoadAssetAtPath<Font>(Fonts[i]);
         }
     }
 
